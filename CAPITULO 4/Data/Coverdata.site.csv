@@ -1,0 +1,641 @@
+"","CATAMI","site","reef_area","cover.mean","cover.SE"
+"1","ASC","Caleta Olivia","horizontal",0.0783582089552238,0.0222279384024918
+"2","ASC","Caleta Olivia","vertical",0.352112676056338,0.1254346031112
+"3","ASC","Camarones","horizontal",0.111356119073869,0.0202135330651634
+"4","ASC","Camarones","vertical",0.715517241379311,0.140039635898564
+"5","ASC","Canal Beagle","horizontal",0.131687242798354,0.0377463471923066
+"6","ASC","Canal Beagle","vertical",0.276785714285714,0.10004006712481
+"7","ASC","Comodoro Rivadavia","horizontal",0.0340136054421769,0.0178391063155111
+"8","ASC","Comodoro Rivadavia","vertical",0.0645161290322581,0.0448530185260521
+"9","ASC","Isla de los Estados","horizontal",0.268488745980708,0.0337571262484288
+"10","ASC","Isla de los Estados","vertical",0.633986928104575,0.0997725457547751
+"11","ASC","Las Grutas","horizontal",0.00649350649350652,0.00649350649350649
+"12","ASC","Las Grutas","vertical",0.027027027027027,0.0189796454912644
+"13","ASC","Puerto Deseado","horizontal",0.0697674418604651,0.0357502054299875
+"14","ASC","Puerto Deseado","vertical",0.782608695652174,0.387331611961923
+"15","ASC","Puerto Lobos","horizontal",0.0103092783505155,0.00727085071403174
+"16","ASC","Puerto Lobos","vertical",0.0816326530612245,0.0641316586223293
+"17","ASC","Puerto Piramides","horizontal",0.0292682926829268,0.0168150190232236
+"18","ASC","Puerto Piramides","vertical",0.0752688172043011,0.0318682246432161
+"19","ASC","Punta Buenos Aires","horizontal",0.025,0.0123815139135912
+"20","ASC","Punta Buenos Aires","vertical",0.408695652173913,0.13296802674467
+"21","ASS","Caleta Olivia","horizontal",5.86940298507463,0.464101015022442
+"22","ASS","Caleta Olivia","vertical",5.87323943661972,0.76727052290429
+"23","ASS","Camarones","horizontal",1.35391400220508,0.102796185952353
+"24","ASS","Camarones","vertical",1.93103448275862,0.257634300847478
+"25","ASS","Canal Beagle","horizontal",0.0699588477366255,0.0349448965437138
+"26","ASS","Canal Beagle","vertical",0.205357142857143,0.162992838853609
+"27","ASS","Comodoro Rivadavia","horizontal",0.102040816326531,0.0316282188071648
+"28","ASS","Comodoro Rivadavia","vertical",1.2258064516129,0.288524900322554
+"29","ASS","Isla de los Estados","horizontal",0.364951768488747,0.0795143849818362
+"30","ASS","Isla de los Estados","vertical",0.366013071895425,0.106848253099816
+"31","ASS","Las Grutas","horizontal",0.61038961038961,0.0875549899655212
+"32","ASS","Las Grutas","vertical",4.55405405405405,0.629445873231064
+"33","ASS","Puerto Deseado","horizontal",0.224806201550388,0.0470787571989075
+"34","ASS","Puerto Deseado","vertical",0.304347826086957,0.116517019549278
+"35","ASS","Puerto Lobos","horizontal",0.0257731958762887,0.0114060565337383
+"36","ASS","Puerto Lobos","vertical",0.204081632653061,0.130343579975236
+"37","ASS","Puerto Piramides","horizontal",0.390243902439024,0.0554923374628802
+"38","ASS","Puerto Piramides","vertical",0.247311827956989,0.0465688941044384
+"39","ASS","Punta Buenos Aires","horizontal",0.84375,0.133749412212898
+"40","ASS","Punta Buenos Aires","vertical",1.0695652173913,0.15755654204307
+"41","AUC","Caleta Olivia","horizontal",0.201492537313433,0.0356847291761603
+"42","AUC","Caleta Olivia","vertical",1.14084507042254,0.168190481560881
+"43","AUC","Camarones","horizontal",0.573318632855568,0.0428933633583178
+"44","AUC","Camarones","vertical",8.08620689655172,0.63524292836565
+"45","AUC","Canal Beagle","horizontal",0.333333333333333,0.0537667320628665
+"46","AUC","Canal Beagle","vertical",4.19642857142857,0.699999917920831
+"47","AUC","Comodoro Rivadavia","horizontal",1.05442176870748,0.13610333665472
+"48","AUC","Comodoro Rivadavia","vertical",2.67741935483871,0.502439418643549
+"49","AUC","Isla de los Estados","horizontal",1.45498392282958,0.181997845367597
+"50","AUC","Isla de los Estados","vertical",4.79084967320261,0.529541278691851
+"51","AUC","Las Grutas","horizontal",0.0584415584415584,0.0189643874519578
+"52","AUC","Las Grutas","vertical",0.648648648648648,0.129694244190307
+"53","AUC","Puerto Deseado","horizontal",0.065891472868217,0.0232620971011332
+"54","AUC","Puerto Deseado","vertical",0.173913043478261,0.102386038316116
+"55","AUC","Puerto Lobos","horizontal",0.0618556701030928,0.0259727332744375
+"56","AUC","Puerto Lobos","vertical",0.428571428571428,0.182107839771171
+"57","AUC","Puerto Piramides","horizontal",0.214634146341463,0.0454942824543349
+"58","AUC","Puerto Piramides","vertical",0.311827956989247,0.0444260038678203
+"59","AUC","Punta Buenos Aires","horizontal",0.3875,0.0736447255238573
+"60","AUC","Punta Buenos Aires","vertical",0.608695652173913,0.0993461861873877
+"61","AUS","Caleta Olivia","horizontal",0.317164179104478,0.0469961107226432
+"62","AUS","Caleta Olivia","vertical",2.16901408450704,0.36495688424984
+"63","AUS","Camarones","horizontal",0.413450937155457,0.0366196647962632
+"64","AUS","Camarones","vertical",2.55172413793104,0.393223107067686
+"65","AUS","Canal Beagle","horizontal",0.181069958847737,0.0368912623587611
+"66","AUS","Canal Beagle","vertical",0.241071428571429,0.0598226891470942
+"67","AUS","Comodoro Rivadavia","horizontal",0.0952380952380952,0.0278669398086025
+"68","AUS","Comodoro Rivadavia","vertical",1.54838709677419,0.343413320917663
+"69","AUS","Isla de los Estados","horizontal",0.517684887459806,0.0530072169247102
+"70","AUS","Isla de los Estados","vertical",2.32679738562091,0.445984074162475
+"71","AUS","Las Grutas","horizontal",0.188311688311688,0.0494168356070325
+"72","AUS","Las Grutas","vertical",0.472972972972973,0.133617917440561
+"73","AUS","Puerto Deseado","horizontal",0.0426356589147286,0.0157896771500378
+"74","AUS","Puerto Deseado","vertical",0.304347826086957,0.116517019549278
+"75","AUS","Puerto Lobos","horizontal",0.252577319587628,0.0543556373987939
+"76","AUS","Puerto Lobos","vertical",2.6734693877551,0.49348455156954
+"77","AUS","Puerto Piramides","horizontal",0.282926829268293,0.0457652515267691
+"78","AUS","Puerto Piramides","vertical",0.548387096774193,0.0677758318760265
+"79","AUS","Punta Buenos Aires","horizontal",2.15625,0.322815210274046
+"80","AUS","Punta Buenos Aires","vertical",9.20869565217391,0.795342626509438
+"81","BRY","Caleta Olivia","horizontal",0.0149253731343283,0.00742064292800187
+"82","BRY","Caleta Olivia","vertical",0.0563380281690141,0.0275587825646099
+"83","BRY","Camarones","horizontal",0.64167585446527,0.0817558909633944
+"84","BRY","Camarones","vertical",0.517241379310345,0.0895455447848081
+"85","BRY","Canal Beagle","horizontal",0.0534979423868312,0.0203297840167505
+"86","BRY","Canal Beagle","vertical",1.16964285714286,0.202497435060556
+"87","BRY","Comodoro Rivadavia","horizontal",0.462585034013605,0.11433141162531
+"88","BRY","Comodoro Rivadavia","vertical",0.032258064516129,0.032258064516129
+"89","BRY","Isla de los Estados","horizontal",0.345659163987139,0.0482350061644445
+"90","BRY","Isla de los Estados","vertical",1.49673202614379,0.237542055915864
+"91","BRY","Las Grutas","horizontal",0.0779220779220779,0.0216704714147118
+"92","BRY","Las Grutas","vertical",0.162162162162162,0.0667293433754477
+"93","BRY","Puerto Deseado","horizontal",0.00775193798449611,0.0054707732265579
+"94","BRY","Puerto Deseado","vertical",0.521739130434783,0.349305155656691
+"95","BRY","Puerto Lobos","horizontal",0.314432989690721,0.0556175030998043
+"96","BRY","Puerto Lobos","vertical",0.0408163265306122,0.028559278271678
+"97","BRY","Puerto Piramides","horizontal",0.0048780487804878,0.00487804878048781
+"98","BRY","Puerto Piramides","vertical",0,0
+"99","BRY","Punta Buenos Aires","horizontal",0.0375,0.015066675711023
+"100","BRY","Punta Buenos Aires","vertical",0.0347826086956522,0.0211436364230768
+"101","CBW","Caleta Olivia","horizontal",0.00746268656716417,0.00526702514177231
+"102","CBW","Caleta Olivia","vertical",0.0422535211267606,0.0240440551248123
+"103","CBW","Camarones","horizontal",0.054024255788313,0.00884944471127398
+"104","CBW","Camarones","vertical",0.0862068965517241,0.0288951096883929
+"105","CBW","Canal Beagle","horizontal",0.0452674897119342,0.0133636895619093
+"106","CBW","Canal Beagle","vertical",0.196428571428571,0.0619285792218313
+"107","CBW","Comodoro Rivadavia","horizontal",0,0
+"108","CBW","Comodoro Rivadavia","vertical",0,0
+"109","CBW","Isla de los Estados","horizontal",0.17684887459807,0.0285365535993432
+"110","CBW","Isla de los Estados","vertical",0.941176470588236,0.13793506836716
+"111","CBW","Las Grutas","horizontal",3,0.499129196713945
+"112","CBW","Las Grutas","vertical",1.28378378378378,0.327963813500313
+"113","CBW","Puerto Deseado","horizontal",0,0
+"114","CBW","Puerto Deseado","vertical",0.0434782608695652,0.0434782608695652
+"115","CBW","Puerto Lobos","horizontal",0.0463917525773196,0.0151400299570077
+"116","CBW","Puerto Lobos","vertical",0.285714285714286,0.142857142857143
+"117","CBW","Puerto Piramides","horizontal",0.0146341463414634,0.00840750951161181
+"118","CBW","Puerto Piramides","vertical",0.0322580645161291,0.0168816001121145
+"119","CBW","Punta Buenos Aires","horizontal",0.0125,0.00881099584602911
+"120","CBW","Punta Buenos Aires","vertical",0.0173913043478261,0.0122434539906839
+"121","CNCAC","Caleta Olivia","horizontal",1.16791044776119,0.107793725479045
+"122","CNCAC","Caleta Olivia","vertical",6.69014084507042,0.772409423572793
+"123","CNCAC","Camarones","horizontal",0.658213891951491,0.0530891628113087
+"124","CNCAC","Camarones","vertical",1.87068965517241,0.275302797020019
+"125","CNCAC","Canal Beagle","horizontal",0.358024691358025,0.0872682701517114
+"126","CNCAC","Canal Beagle","vertical",0.571428571428571,0.124088883919297
+"127","CNCAC","Comodoro Rivadavia","horizontal",0.72108843537415,0.105209702210889
+"128","CNCAC","Comodoro Rivadavia","vertical",2.93548387096774,0.39874934555774
+"129","CNCAC","Isla de los Estados","horizontal",0.342443729903538,0.0377366928245258
+"130","CNCAC","Isla de los Estados","vertical",1.91503267973856,0.236603160206136
+"131","CNCAC","Las Grutas","horizontal",0.181818181818182,0.0556268881740978
+"132","CNCAC","Las Grutas","vertical",2.74324324324324,0.529423348674514
+"133","CNCAC","Puerto Deseado","horizontal",0.0503875968992247,0.0213927629530233
+"134","CNCAC","Puerto Deseado","vertical",0.173913043478261,0.0808104675899639
+"135","CNCAC","Puerto Lobos","horizontal",0.0515463917525773,0.0189774775087556
+"136","CNCAC","Puerto Lobos","vertical",0.183673469387755,0.07533072989915
+"137","CNCAC","Puerto Piramides","horizontal",0.614634146341463,0.242168393454148
+"138","CNCAC","Puerto Piramides","vertical",53.4193548387097,1.8106958071666
+"139","CNCAC","Punta Buenos Aires","horizontal",0.5,0.0607862529973605
+"140","CNCAC","Punta Buenos Aires","vertical",5.13913043478261,0.840606275389686
+"141","CNTR","Caleta Olivia","horizontal",0.895522388059701,0.147418704371569
+"142","CNTR","Caleta Olivia","vertical",2.15492957746479,0.378309214931636
+"143","CNTR","Camarones","horizontal",1.58654906284454,0.0996497385110048
+"144","CNTR","Camarones","vertical",4.12931034482759,0.559037802147542
+"145","CNTR","Canal Beagle","horizontal",3.31687242798355,0.505733558693331
+"146","CNTR","Canal Beagle","vertical",5.57142857142857,1.20205437923957
+"147","CNTR","Comodoro Rivadavia","horizontal",0.564625850340136,0.0931279743565867
+"148","CNTR","Comodoro Rivadavia","vertical",6.2258064516129,0.67793119424293
+"149","CNTR","Isla de los Estados","horizontal",0.254019292604502,0.0284146488070034
+"150","CNTR","Isla de los Estados","vertical",10.5555555555556,1.52140130378182
+"151","CNTR","Las Grutas","horizontal",0.0324675324675325,0.0143288620027597
+"152","CNTR","Las Grutas","vertical",0.162162162162162,0.0609289649791235
+"153","CNTR","Puerto Deseado","horizontal",0,0
+"154","CNTR","Puerto Deseado","vertical",0.0869565217391304,0.0600738504093702
+"155","CNTR","Puerto Lobos","horizontal",1.48969072164949,0.237753818918707
+"156","CNTR","Puerto Lobos","vertical",0.0816326530612245,0.0491140444836519
+"157","CNTR","Puerto Piramides","horizontal",0.195121951219512,0.0385643617093704
+"158","CNTR","Puerto Piramides","vertical",0.440860215053764,0.2149491172304
+"159","CNTR","Punta Buenos Aires","horizontal",0.33125,0.0702208303548404
+"160","CNTR","Punta Buenos Aires","vertical",0.904347826086958,0.306794134879668
+"161","CRB","Caleta Olivia","horizontal",0,0
+"162","CRB","Caleta Olivia","vertical",0,0
+"163","CRB","Camarones","horizontal",0,0
+"164","CRB","Camarones","vertical",0,0
+"165","CRB","Canal Beagle","horizontal",0,0
+"166","CRB","Canal Beagle","vertical",0,0
+"167","CRB","Comodoro Rivadavia","horizontal",0,0
+"168","CRB","Comodoro Rivadavia","vertical",0,0
+"169","CRB","Isla de los Estados","horizontal",0,0
+"170","CRB","Isla de los Estados","vertical",0,0
+"171","CRB","Las Grutas","horizontal",0,0
+"172","CRB","Las Grutas","vertical",0,0
+"173","CRB","Puerto Deseado","horizontal",0,0
+"174","CRB","Puerto Deseado","vertical",0,0
+"175","CRB","Puerto Lobos","horizontal",0,0
+"176","CRB","Puerto Lobos","vertical",0,0
+"177","CRB","Puerto Piramides","horizontal",0,0
+"178","CRB","Puerto Piramides","vertical",0,0
+"179","CRB","Punta Buenos Aires","horizontal",0,0
+"180","CRB","Punta Buenos Aires","vertical",0,0
+"181","EOBSS","Caleta Olivia","horizontal",0.0223880597014925,0.00905390318384994
+"182","EOBSS","Caleta Olivia","vertical",0,0
+"183","EOBSS","Camarones","horizontal",0.200661521499449,0.018833730098621
+"184","EOBSS","Camarones","vertical",0.327586206896552,0.0742537709419211
+"185","EOBSS","Canal Beagle","horizontal",0.0946502057613168,0.0221390566786584
+"186","EOBSS","Canal Beagle","vertical",0.0446428571428571,0.0294424619852251
+"187","EOBSS","Comodoro Rivadavia","horizontal",0.877551020408163,0.105260905744863
+"188","EOBSS","Comodoro Rivadavia","vertical",0.225806451612903,0.0893185361604094
+"189","EOBSS","Isla de los Estados","horizontal",0.160771704180065,0.0312795553918926
+"190","EOBSS","Isla de los Estados","vertical",0.0522875816993464,0.0180557598514079
+"191","EOBSS","Las Grutas","horizontal",0.00649350649350651,0.00649350649350649
+"192","EOBSS","Las Grutas","vertical",0,0
+"193","EOBSS","Puerto Deseado","horizontal",0,0
+"194","EOBSS","Puerto Deseado","vertical",0.0434782608695652,0.0434782608695652
+"195","EOBSS","Puerto Lobos","horizontal",0.077319587628866,0.0205684182867843
+"196","EOBSS","Puerto Lobos","vertical",0.142857142857143,0.077151674981046
+"197","EOBSS","Puerto Piramides","horizontal",0.0878048780487804,0.0220968652467537
+"198","EOBSS","Puerto Piramides","vertical",0.00537634408602151,0.0053763440860215
+"199","EOBSS","Punta Buenos Aires","horizontal",6.59375,1.13990982468437
+"200","EOBSS","Punta Buenos Aires","vertical",1.33913043478261,0.188893343243076
+"201","ESS","Caleta Olivia","horizontal",0.473880597014925,0.074280528442034
+"202","ESS","Caleta Olivia","vertical",0.253521126760563,0.114744594098857
+"203","ESS","Camarones","horizontal",0.477398015435501,0.0422129118119757
+"204","ESS","Camarones","vertical",0.663793103448276,0.103132326111853
+"205","ESS","Canal Beagle","horizontal",1.20164609053498,0.275244627865694
+"206","ESS","Canal Beagle","vertical",0.910714285714286,0.241174188023015
+"207","ESS","Comodoro Rivadavia","horizontal",0.605442176870748,0.106431788359973
+"208","ESS","Comodoro Rivadavia","vertical",0.354838709677419,0.143297473109313
+"209","ESS","Isla de los Estados","horizontal",0.813504823151125,0.115539610508895
+"210","ESS","Isla de los Estados","vertical",0.65359477124183,0.12208776859405
+"211","ESS","Las Grutas","horizontal",0,0
+"212","ESS","Las Grutas","vertical",0,0
+"213","ESS","Puerto Deseado","horizontal",0.0387596899224806,0.0143281785886291
+"214","ESS","Puerto Deseado","vertical",0,0
+"215","ESS","Puerto Lobos","horizontal",0.417525773195876,0.107312420877892
+"216","ESS","Puerto Lobos","vertical",0.285714285714286,0.0824786098842322
+"217","ESS","Puerto Piramides","horizontal",0.175609756097561,0.0441937304935073
+"218","ESS","Puerto Piramides","vertical",0.0698924731182794,0.0305388009322406
+"219","ESS","Punta Buenos Aires","horizontal",0.25625,0.0526401058034054
+"220","ESS","Punta Buenos Aires","vertical",0.547826086956521,0.11602590406266
+"221","ESUR","Caleta Olivia","horizontal",0.67910447761194,0.075362520831078
+"222","ESUR","Caleta Olivia","vertical",0.112676056338028,0.0619901198548353
+"223","ESUR","Camarones","horizontal",1.15656008820287,0.0872653837639625
+"224","ESUR","Camarones","vertical",0.396551724137931,0.0890389385911098
+"225","ESUR","Canal Beagle","horizontal",4.72427983539095,0.562499105328242
+"226","ESUR","Canal Beagle","vertical",4.4375,0.824221216018104
+"227","ESUR","Comodoro Rivadavia","horizontal",3.48299319727891,0.322682376180586
+"228","ESUR","Comodoro Rivadavia","vertical",0.612903225806452,0.151532808859809
+"229","ESUR","Isla de los Estados","horizontal",2.59003215434082,0.256426369987071
+"230","ESUR","Isla de los Estados","vertical",1.91503267973856,0.224287986363887
+"231","ESUR","Las Grutas","horizontal",0.00649350649350651,0.00649350649350649
+"232","ESUR","Las Grutas","vertical",0,0
+"233","ESUR","Puerto Deseado","horizontal",0.0232558139534883,0.0108879898591315
+"234","ESUR","Puerto Deseado","vertical",0,0
+"235","ESUR","Puerto Lobos","horizontal",0.77319587628866,0.103620252028422
+"236","ESUR","Puerto Lobos","vertical",1.85714285714286,0.273550602216097
+"237","ESUR","Puerto Piramides","horizontal",1.43414634146341,0.158631836889793
+"238","ESUR","Puerto Piramides","vertical",1.32795698924731,0.113463686893275
+"239","ESUR","Punta Buenos Aires","horizontal",3.30625,0.35399748548924
+"240","ESUR","Punta Buenos Aires","vertical",2.69565217391304,0.287861181754099
+"241","MOB","Caleta Olivia","horizontal",0.451492537313432,0.0854409045916677
+"242","MOB","Caleta Olivia","vertical",1.6056338028169,0.321890087868175
+"243","MOB","Camarones","horizontal",0.685777287761853,0.0605167467359563
+"244","MOB","Camarones","vertical",0.560344827586207,0.103382662850345
+"245","MOB","Canal Beagle","horizontal",1.00411522633745,0.166436729703154
+"246","MOB","Canal Beagle","vertical",1.125,0.350611939762086
+"247","MOB","Comodoro Rivadavia","horizontal",1.36734693877551,0.187206517471657
+"248","MOB","Comodoro Rivadavia","vertical",1.64516129032258,0.260472635331437
+"249","MOB","Isla de los Estados","horizontal",2.13183279742765,0.247814800692143
+"250","MOB","Isla de los Estados","vertical",0.215686274509804,0.0614728472187764
+"251","MOB","Las Grutas","horizontal",0.0324675324675325,0.0170352201076988
+"252","MOB","Las Grutas","vertical",0.364864864864865,0.085129698997238
+"253","MOB","Puerto Deseado","horizontal",0.0968992248062014,0.026504020754521
+"254","MOB","Puerto Deseado","vertical",0.304347826086956,0.262511303040638
+"255","MOB","Puerto Lobos","horizontal",1.8659793814433,0.29645067844722
+"256","MOB","Puerto Lobos","vertical",16.5714285714286,2.73830226960573
+"257","MOB","Puerto Piramides","horizontal",1.50731707317073,0.155347762817776
+"258","MOB","Puerto Piramides","vertical",6.79569892473118,0.427486199785066
+"259","MOB","Punta Buenos Aires","horizontal",2.825,0.379977448850876
+"260","MOB","Punta Buenos Aires","vertical",8.71304347826087,0.919221407796251
+"261","MOG","Caleta Olivia","horizontal",0,0
+"262","MOG","Caleta Olivia","vertical",0,0
+"263","MOG","Camarones","horizontal",0,0
+"264","MOG","Camarones","vertical",0,0
+"265","MOG","Canal Beagle","horizontal",0,0
+"266","MOG","Canal Beagle","vertical",0,0
+"267","MOG","Comodoro Rivadavia","horizontal",0,0
+"268","MOG","Comodoro Rivadavia","vertical",0,0
+"269","MOG","Isla de los Estados","horizontal",0,0
+"270","MOG","Isla de los Estados","vertical",0,0
+"271","MOG","Las Grutas","horizontal",0,0
+"272","MOG","Las Grutas","vertical",0,0
+"273","MOG","Puerto Deseado","horizontal",0,0
+"274","MOG","Puerto Deseado","vertical",0,0
+"275","MOG","Puerto Lobos","horizontal",0,0
+"276","MOG","Puerto Lobos","vertical",0,0
+"277","MOG","Puerto Piramides","horizontal",0,0
+"278","MOG","Puerto Piramides","vertical",0,0
+"279","MOG","Punta Buenos Aires","horizontal",0,0
+"280","MOG","Punta Buenos Aires","vertical",0,0
+"281","SPMSI","Caleta Olivia","horizontal",2.65671641791045,0.24480795322065
+"282","SPMSI","Caleta Olivia","vertical",8.2112676056338,1.0199056043743
+"283","SPMSI","Camarones","horizontal",1.18743109151048,0.0957395440219729
+"284","SPMSI","Camarones","vertical",2.96551724137931,0.282134463057584
+"285","SPMSI","Canal Beagle","horizontal",0.473251028806585,0.102229685558789
+"286","SPMSI","Canal Beagle","vertical",1.17857142857143,0.271505611230381
+"287","SPMSI","Comodoro Rivadavia","horizontal",1.15646258503401,0.191784648110267
+"288","SPMSI","Comodoro Rivadavia","vertical",1.51612903225806,0.30007514378592
+"289","SPMSI","Isla de los Estados","horizontal",1.63504823151125,0.152543710864778
+"290","SPMSI","Isla de los Estados","vertical",6.70588235294117,0.882691140322451
+"291","SPMSI","Las Grutas","horizontal",0.766233766233766,0.137517801485873
+"292","SPMSI","Las Grutas","vertical",4.81081081081081,0.698460695978385
+"293","SPMSI","Puerto Deseado","horizontal",0.0387596899224806,0.0132338021312319
+"294","SPMSI","Puerto Deseado","vertical",0.739130434782609,0.190872671425291
+"295","SPMSI","Puerto Lobos","horizontal",1.11340206185567,0.351555531870362
+"296","SPMSI","Puerto Lobos","vertical",1,0.184427778390829
+"297","SPMSI","Puerto Piramides","horizontal",0.419512195121951,0.0659554273246707
+"298","SPMSI","Puerto Piramides","vertical",1.83870967741936,0.161470402231915
+"299","SPMSI","Punta Buenos Aires","horizontal",0.425,0.067263445266968
+"300","SPMSI","Punta Buenos Aires","vertical",2.38260869565217,0.301428738372193
+"301","WPOT","Caleta Olivia","horizontal",0,0
+"302","WPOT","Caleta Olivia","vertical",0,0
+"303","WPOT","Camarones","horizontal",0,0
+"304","WPOT","Camarones","vertical",0,0
+"305","WPOT","Canal Beagle","horizontal",0,0
+"306","WPOT","Canal Beagle","vertical",0,0
+"307","WPOT","Comodoro Rivadavia","horizontal",0,0
+"308","WPOT","Comodoro Rivadavia","vertical",0,0
+"309","WPOT","Isla de los Estados","horizontal",0,0
+"310","WPOT","Isla de los Estados","vertical",0,0
+"311","WPOT","Las Grutas","horizontal",0,0
+"312","WPOT","Las Grutas","vertical",0,0
+"313","WPOT","Puerto Deseado","horizontal",0,0
+"314","WPOT","Puerto Deseado","vertical",0,0
+"315","WPOT","Puerto Lobos","horizontal",0,0
+"316","WPOT","Puerto Lobos","vertical",0,0
+"317","WPOT","Puerto Piramides","horizontal",0,0
+"318","WPOT","Puerto Piramides","vertical",0,0
+"319","WPOT","Punta Buenos Aires","horizontal",0,0
+"320","WPOT","Punta Buenos Aires","vertical",0,0
+"321","SC","Caleta Olivia","horizontal",27.9029850746269,1.04712777270115
+"322","SC","Caleta Olivia","vertical",36.8591549295775,1.92675703342541
+"323","SC","Camarones","horizontal",7.44762954796029,0.378557312702416
+"324","SC","Camarones","vertical",10.0603448275862,0.829125801171591
+"325","SC","Canal Beagle","horizontal",2.09465020576132,0.22559511947427
+"326","SC","Canal Beagle","vertical",5.89285714285715,0.775401787207815
+"327","SC","Comodoro Rivadavia","horizontal",9.1360544217687,0.932371643465103
+"328","SC","Comodoro Rivadavia","vertical",8.41935483870968,0.76026904342057
+"329","SC","Isla de los Estados","horizontal",15.9308681672025,0.874686586734978
+"330","SC","Isla de los Estados","vertical",2.55555555555555,0.348085442293474
+"331","SC","Las Grutas","horizontal",31.4415584415584,2.32339889245503
+"332","SC","Las Grutas","vertical",11.2837837837838,1.13728507988646
+"333","SC","Puerto Deseado","horizontal",6.38759689922481,0.604969919081401
+"334","SC","Puerto Deseado","vertical",30.2608695652174,4.58827229503403
+"335","SC","Puerto Lobos","horizontal",2.61340206185567,0.341868741296741
+"336","SC","Puerto Lobos","vertical",0.755102040816326,0.194592309393031
+"337","SC","Puerto Piramides","horizontal",3.93658536585366,0.331661599797737
+"338","SC","Puerto Piramides","vertical",1.85483870967742,0.20307721649792
+"339","SC","Punta Buenos Aires","horizontal",12.65,0.766187982911004
+"340","SC","Punta Buenos Aires","vertical",16.4347826086957,1.74875483367784
+"341","SHAD","Caleta Olivia","horizontal",0,0
+"342","SHAD","Caleta Olivia","vertical",0,0
+"343","SHAD","Camarones","horizontal",0,0
+"344","SHAD","Camarones","vertical",0,0
+"345","SHAD","Canal Beagle","horizontal",0,0
+"346","SHAD","Canal Beagle","vertical",0,0
+"347","SHAD","Comodoro Rivadavia","horizontal",0,0
+"348","SHAD","Comodoro Rivadavia","vertical",0,0
+"349","SHAD","Isla de los Estados","horizontal",0,0
+"350","SHAD","Isla de los Estados","vertical",0,0
+"351","SHAD","Las Grutas","horizontal",0,0
+"352","SHAD","Las Grutas","vertical",0,0
+"353","SHAD","Puerto Deseado","horizontal",0.0775193798449611,0.077519379844961
+"354","SHAD","Puerto Deseado","vertical",0,0
+"355","SHAD","Puerto Lobos","horizontal",0,0
+"356","SHAD","Puerto Lobos","vertical",0,0
+"357","SHAD","Puerto Piramides","horizontal",0,0
+"358","SHAD","Puerto Piramides","vertical",0,0
+"359","SHAD","Punta Buenos Aires","horizontal",0,0
+"360","SHAD","Punta Buenos Aires","vertical",0,0
+"361","Unc","Caleta Olivia","horizontal",0,0
+"362","Unc","Caleta Olivia","vertical",0,0
+"363","Unc","Camarones","horizontal",0,0
+"364","Unc","Camarones","vertical",0,0
+"365","Unc","Canal Beagle","horizontal",0,0
+"366","Unc","Canal Beagle","vertical",0,0
+"367","Unc","Comodoro Rivadavia","horizontal",0,0
+"368","Unc","Comodoro Rivadavia","vertical",0,0
+"369","Unc","Isla de los Estados","horizontal",0,0
+"370","Unc","Isla de los Estados","vertical",0,0
+"371","Unc","Las Grutas","horizontal",0,0
+"372","Unc","Las Grutas","vertical",0,0
+"373","Unc","Puerto Deseado","horizontal",0,0
+"374","Unc","Puerto Deseado","vertical",0,0
+"375","Unc","Puerto Lobos","horizontal",0,0
+"376","Unc","Puerto Lobos","vertical",0,0
+"377","Unc","Puerto Piramides","horizontal",0,0
+"378","Unc","Puerto Piramides","vertical",0,0
+"379","Unc","Punta Buenos Aires","horizontal",0,0
+"380","Unc","Punta Buenos Aires","vertical",0,0
+"381","MAAR","Caleta Olivia","horizontal",2.22388059701492,0.285745124552908
+"382","MAAR","Caleta Olivia","vertical",0.76056338028169,0.219258663826393
+"383","MAAR","Camarones","horizontal",5.8743109151047,0.378106043717137
+"384","MAAR","Camarones","vertical",0.905172413793104,0.349336155252639
+"385","MAAR","Canal Beagle","horizontal",0.0205761316872428,0.0108298651897719
+"386","MAAR","Canal Beagle","vertical",0,0
+"387","MAAR","Comodoro Rivadavia","horizontal",17.7755102040816,1.73282527477305
+"388","MAAR","Comodoro Rivadavia","vertical",0.258064516129032,0.12241074813555
+"389","MAAR","Isla de los Estados","horizontal",0.0337620578778134,0.00825016308592747
+"390","MAAR","Isla de los Estados","vertical",0.0261437908496733,0.0159217222675168
+"391","MAAR","Las Grutas","horizontal",0,0
+"392","MAAR","Las Grutas","vertical",0,0
+"393","MAAR","Puerto Deseado","horizontal",1.74418604651163,0.322847691496548
+"394","MAAR","Puerto Deseado","vertical",1.26086956521739,0.556021267061162
+"395","MAAR","Puerto Lobos","horizontal",0.0206185567010309,0.0125716001535315
+"396","MAAR","Puerto Lobos","vertical",0,0
+"397","MAAR","Puerto Piramides","horizontal",0.0926829268292683,0.0235731126525577
+"398","MAAR","Puerto Piramides","vertical",0.010752688172043,0.00758272142158695
+"399","MAAR","Punta Buenos Aires","horizontal",0.175,0.0473761211513344
+"400","MAAR","Punta Buenos Aires","vertical",0.0260869565217391,0.0149286100048513
+"401","MAECG","Caleta Olivia","horizontal",7.30223880597012,0.762256318634105
+"402","MAECG","Caleta Olivia","vertical",3.6056338028169,0.796238357798943
+"403","MAECG","Camarones","horizontal",12.0529217199559,0.45321030181865
+"404","MAECG","Camarones","vertical",4.48275862068966,0.730414718473432
+"405","MAECG","Canal Beagle","horizontal",0.20164609053498,0.0475783920513781
+"406","MAECG","Canal Beagle","vertical",0.214285714285714,0.0573275650540046
+"407","MAECG","Comodoro Rivadavia","horizontal",5.7687074829932,0.654516151036941
+"408","MAECG","Comodoro Rivadavia","vertical",2.29032258064516,0.404792654708042
+"409","MAECG","Isla de los Estados","horizontal",1.35209003215434,0.117158676668375
+"410","MAECG","Isla de los Estados","vertical",0.660130718954248,0.119899696747254
+"411","MAECG","Las Grutas","horizontal",0.318181818181818,0.0915329582306481
+"412","MAECG","Las Grutas","vertical",0.162162162162162,0.0472377580505781
+"413","MAECG","Puerto Deseado","horizontal",0.569767441860466,0.151069952395549
+"414","MAECG","Puerto Deseado","vertical",0.260869565217391,0.143603969364308
+"415","MAECG","Puerto Lobos","horizontal",1.24742268041237,0.524291696284735
+"416","MAECG","Puerto Lobos","vertical",0.122448979591837,0.0555786892461503
+"417","MAECG","Puerto Piramides","horizontal",2.49756097560975,0.296852965183933
+"418","MAECG","Puerto Piramides","vertical",0.150537634408602,0.0284159672832923
+"419","MAECG","Punta Buenos Aires","horizontal",3.01875,0.215637105439065
+"420","MAECG","Punta Buenos Aires","vertical",3.26086956521739,0.316369314771553
+"421","MAEFR","Caleta Olivia","horizontal",0.0373134328358209,0.012747009215647
+"422","MAEFR","Caleta Olivia","vertical",0,0
+"423","MAEFR","Camarones","horizontal",3.11466372657111,0.257715989530593
+"424","MAEFR","Camarones","vertical",0.232758620689655,0.0674639763062772
+"425","MAEFR","Canal Beagle","horizontal",0.0493827160493827,0.0199510536864548
+"426","MAEFR","Canal Beagle","vertical",1.29464285714286,0.53280998990013
+"427","MAEFR","Comodoro Rivadavia","horizontal",0.380952380952381,0.0922559863850967
+"428","MAEFR","Comodoro Rivadavia","vertical",0,0
+"429","MAEFR","Isla de los Estados","horizontal",0.581993569131832,0.0795983818141559
+"430","MAEFR","Isla de los Estados","vertical",0.196078431372549,0.054909331659125
+"431","MAEFR","Las Grutas","horizontal",23.7337662337662,2.00500270274797
+"432","MAEFR","Las Grutas","vertical",3.60810810810811,0.543146716149344
+"433","MAEFR","Puerto Deseado","horizontal",1.09302325581396,0.132368054571446
+"434","MAEFR","Puerto Deseado","vertical",0.173913043478261,0.102386038316116
+"435","MAEFR","Puerto Lobos","horizontal",1.11855670103093,0.13965714539403
+"436","MAEFR","Puerto Lobos","vertical",0.163265306122449,0.0607978331010867
+"437","MAEFR","Puerto Piramides","horizontal",3.77560975609757,0.371049349185332
+"438","MAEFR","Puerto Piramides","vertical",0.360215053763441,0.0696371613852567
+"439","MAEFR","Punta Buenos Aires","horizontal",2.4125,0.247691781360341
+"440","MAEFR","Punta Buenos Aires","vertical",1.02608695652174,0.157913970904241
+"441","MAEN","Caleta Olivia","horizontal",0.671641791044775,0.100386674684944
+"442","MAEN","Caleta Olivia","vertical",0.873239436619718,0.217845290076159
+"443","MAEN","Camarones","horizontal",3.2039691289967,0.175504876916612
+"444","MAEN","Camarones","vertical",9.30172413793103,0.857825764136938
+"445","MAEN","Canal Beagle","horizontal",13.1234567901235,0.943010094809506
+"446","MAEN","Canal Beagle","vertical",19.0357142857143,1.88248414407004
+"447","MAEN","Comodoro Rivadavia","horizontal",2.94557823129252,0.314111069445067
+"448","MAEN","Comodoro Rivadavia","vertical",18.0645161290323,2.24180010421299
+"449","MAEN","Isla de los Estados","horizontal",3.80225080385853,0.244880036697641
+"450","MAEN","Isla de los Estados","vertical",9.93464052287582,0.981715939208157
+"451","MAEN","Las Grutas","horizontal",0.00649350649350651,0.00649350649350649
+"452","MAEN","Las Grutas","vertical",0.162162162162162,0.0981634897737263
+"453","MAEN","Puerto Deseado","horizontal",0.0116279069767442,0.00668720212066768
+"454","MAEN","Puerto Deseado","vertical",0.130434782608696,0.0718019846821539
+"455","MAEN","Puerto Lobos","horizontal",0.149484536082474,0.044053758372837
+"456","MAEN","Puerto Lobos","vertical",3.42857142857143,0.946260092820841
+"457","MAEN","Puerto Piramides","horizontal",1.38048780487805,0.137296604159091
+"458","MAEN","Puerto Piramides","vertical",0.71505376344086,0.102836528657575
+"459","MAEN","Punta Buenos Aires","horizontal",11.10625,1.10126417048401
+"460","MAEN","Punta Buenos Aires","vertical",2.15652173913043,0.343533774926579
+"461","MAENG","Caleta Olivia","horizontal",0.0037313432835821,0.0037313432835821
+"462","MAENG","Caleta Olivia","vertical",0,0
+"463","MAENG","Camarones","horizontal",0.106945975744212,0.0149892178169793
+"464","MAENG","Camarones","vertical",0.0517241379310345,0.0206521399009834
+"465","MAENG","Canal Beagle","horizontal",3.41152263374486,0.697565350023253
+"466","MAENG","Canal Beagle","vertical",0.401785714285714,0.277148742706416
+"467","MAENG","Comodoro Rivadavia","horizontal",0.319727891156462,0.056277195919181
+"468","MAENG","Comodoro Rivadavia","vertical",0.129032258064516,0.0612053740677751
+"469","MAENG","Isla de los Estados","horizontal",2.72829581993569,0.414728883228367
+"470","MAENG","Isla de los Estados","vertical",5.81699346405228,1.04555005367099
+"471","MAENG","Las Grutas","horizontal",0.00649350649350649,0.0064935064935065
+"472","MAENG","Las Grutas","vertical",0,0
+"473","MAENG","Puerto Deseado","horizontal",0.00387596899224806,0.00387596899224806
+"474","MAENG","Puerto Deseado","vertical",0,0
+"475","MAENG","Puerto Lobos","horizontal",0.0412371134020619,0.0204576812388503
+"476","MAENG","Puerto Lobos","vertical",0.0204081632653061,0.0204081632653061
+"477","MAENG","Puerto Piramides","horizontal",0.102439024390244,0.0334701093255474
+"478","MAENG","Puerto Piramides","vertical",0.00537634408602151,0.0053763440860215
+"479","MAENG","Punta Buenos Aires","horizontal",0.10625,0.0259972104817073
+"480","MAENG","Punta Buenos Aires","vertical",0.182608695652174,0.0455203137287153
+"481","MAENRC","Caleta Olivia","horizontal",27.0485074626866,1.12684510218936
+"482","MAENRC","Caleta Olivia","vertical",11.9154929577465,1.41602590645646
+"483","MAENRC","Camarones","horizontal",5.40132304299889,0.239491341260367
+"484","MAENRC","Camarones","vertical",8.97413793103449,0.750857701159672
+"485","MAENRC","Canal Beagle","horizontal",66.477366255144,1.49776003842885
+"486","MAENRC","Canal Beagle","vertical",48.0446428571429,2.50881292185033
+"487","MAENRC","Comodoro Rivadavia","horizontal",16.6530612244898,1.65162308834244
+"488","MAENRC","Comodoro Rivadavia","vertical",30.5161290322581,2.89079777199734
+"489","MAENRC","Isla de los Estados","horizontal",44.7990353697748,1.24814859388621
+"490","MAENRC","Isla de los Estados","vertical",36.6274509803922,2.40275044411095
+"491","MAENRC","Las Grutas","horizontal",0.0454545454545455,0.0168399675826125
+"492","MAENRC","Las Grutas","vertical",1.27027027027027,0.359612948220295
+"493","MAENRC","Puerto Deseado","horizontal",2.10852713178294,0.44113171434312
+"494","MAENRC","Puerto Deseado","vertical",8.47826086956522,2.51467594720201
+"495","MAENRC","Puerto Lobos","horizontal",10.6494845360825,0.984606765179707
+"496","MAENRC","Puerto Lobos","vertical",40.0816326530612,3.12370200726348
+"497","MAENRC","Puerto Piramides","horizontal",17.580487804878,0.949891407511696
+"498","MAENRC","Puerto Piramides","vertical",10.752688172043,0.839981449953525
+"499","MAENRC","Punta Buenos Aires","horizontal",16.1625,1.2879426179403
+"500","MAENRC","Punta Buenos Aires","vertical",17.504347826087,1.23521763697152
+"501","MAFG","Caleta Olivia","horizontal",0,0
+"502","MAFG","Caleta Olivia","vertical",0,0
+"503","MAFG","Camarones","horizontal",0,0
+"504","MAFG","Camarones","vertical",0,0
+"505","MAFG","Canal Beagle","horizontal",0,0
+"506","MAFG","Canal Beagle","vertical",0,0
+"507","MAFG","Comodoro Rivadavia","horizontal",0,0
+"508","MAFG","Comodoro Rivadavia","vertical",0,0
+"509","MAFG","Isla de los Estados","horizontal",0,0
+"510","MAFG","Isla de los Estados","vertical",0,0
+"511","MAFG","Las Grutas","horizontal",0,0
+"512","MAFG","Las Grutas","vertical",0,0
+"513","MAFG","Puerto Deseado","horizontal",0,0
+"514","MAFG","Puerto Deseado","vertical",0,0
+"515","MAFG","Puerto Lobos","horizontal",0,0
+"516","MAFG","Puerto Lobos","vertical",0,0
+"517","MAFG","Puerto Piramides","horizontal",0,0
+"518","MAFG","Puerto Piramides","vertical",0,0
+"519","MAFG","Punta Buenos Aires","horizontal",0,0
+"520","MAFG","Punta Buenos Aires","vertical",0,0
+"521","MAFR","Caleta Olivia","horizontal",7.05970149253731,0.461271116941415
+"522","MAFR","Caleta Olivia","vertical",9.47887323943662,0.719618486818716
+"523","MAFR","Camarones","horizontal",7.57221609702317,0.258898361354533
+"524","MAFR","Camarones","vertical",6.87068965517241,0.647973449353085
+"525","MAFR","Canal Beagle","horizontal",0.382716049382716,0.0582317475693507
+"526","MAFR","Canal Beagle","vertical",0.794642857142857,0.11354416252353
+"527","MAFR","Comodoro Rivadavia","horizontal",4.40816326530613,0.392331095593557
+"528","MAFR","Comodoro Rivadavia","vertical",7.7741935483871,1.18113275083514
+"529","MAFR","Isla de los Estados","horizontal",3.31993569131832,0.217718466594671
+"530","MAFR","Isla de los Estados","vertical",3.2875816993464,0.319592049826353
+"531","MAFR","Las Grutas","horizontal",34.5324675324675,1.65465928903864
+"532","MAFR","Las Grutas","vertical",64.554054054054,1.97523934990378
+"533","MAFR","Puerto Deseado","horizontal",11.1317829457365,0.762428757833773
+"534","MAFR","Puerto Deseado","vertical",17.5652173913043,3.76053255361321
+"535","MAFR","Puerto Lobos","horizontal",36.1907216494845,1.85817262217559
+"536","MAFR","Puerto Lobos","vertical",10.4897959183673,1.52142366670895
+"537","MAFR","Puerto Piramides","horizontal",37.4731707317073,1.12963114939904
+"538","MAFR","Puerto Piramides","vertical",10.8064516129032,0.682045069507876
+"539","MAFR","Punta Buenos Aires","horizontal",20.5375,1.34900054722565
+"540","MAFR","Punta Buenos Aires","vertical",11.0782608695652,0.651132654654042
+"541","MAGB","Caleta Olivia","horizontal",0,0
+"542","MAGB","Caleta Olivia","vertical",0,0
+"543","MAGB","Camarones","horizontal",0,0
+"544","MAGB","Camarones","vertical",0,0
+"545","MAGB","Canal Beagle","horizontal",0,0
+"546","MAGB","Canal Beagle","vertical",0,0
+"547","MAGB","Comodoro Rivadavia","horizontal",0,0
+"548","MAGB","Comodoro Rivadavia","vertical",0,0
+"549","MAGB","Isla de los Estados","horizontal",0,0
+"550","MAGB","Isla de los Estados","vertical",0,0
+"551","MAGB","Las Grutas","horizontal",0,0
+"552","MAGB","Las Grutas","vertical",0,0
+"553","MAGB","Puerto Deseado","horizontal",0,0
+"554","MAGB","Puerto Deseado","vertical",0,0
+"555","MAGB","Puerto Lobos","horizontal",0,0
+"556","MAGB","Puerto Lobos","vertical",0,0
+"557","MAGB","Puerto Piramides","horizontal",0,0
+"558","MAGB","Puerto Piramides","vertical",0,0
+"559","MAGB","Punta Buenos Aires","horizontal",0,0
+"560","MAGB","Punta Buenos Aires","vertical",0,0
+"561","MALCB","Caleta Olivia","horizontal",8.0223880597015,1.29575877377547
+"562","MALCB","Caleta Olivia","vertical",0.732394366197183,0.141787590842963
+"563","MALCB","Camarones","horizontal",4.33627342888644,0.406212415523688
+"564","MALCB","Camarones","vertical",2.16379310344828,0.54730414205963
+"565","MALCB","Canal Beagle","horizontal",0.572016460905349,0.152158550419526
+"566","MALCB","Canal Beagle","vertical",1.26785714285714,0.294190352969139
+"567","MALCB","Comodoro Rivadavia","horizontal",27.3333333333333,3.20264738438248
+"568","MALCB","Comodoro Rivadavia","vertical",1.61290322580645,0.505193286452891
+"569","MALCB","Isla de los Estados","horizontal",3.18488745980707,0.250364062457027
+"570","MALCB","Isla de los Estados","vertical",1.31372549019608,0.239766575410648
+"571","MALCB","Las Grutas","horizontal",0.0714285714285715,0.0307050706393818
+"572","MALCB","Las Grutas","vertical",0.702702702702703,0.345666422615368
+"573","MALCB","Puerto Deseado","horizontal",10.4031007751938,1.51457630566679
+"574","MALCB","Puerto Deseado","vertical",2.26086956521739,0.77310878848414
+"575","MALCB","Puerto Lobos","horizontal",0.221649484536083,0.0605930733899364
+"576","MALCB","Puerto Lobos","vertical",0.63265306122449,0.199262836950705
+"577","MALCB","Puerto Piramides","horizontal",0.0536585365853658,0.0220915858618386
+"578","MALCB","Puerto Piramides","vertical",0.118279569892473,0.0271679041313463
+"579","MALCB","Punta Buenos Aires","horizontal",0.3125,0.0798915833760955
+"580","MALCB","Punta Buenos Aires","vertical",0.617391304347826,0.103767775035768
+"581","MASB","Caleta Olivia","horizontal",1.3955223880597,0.223927641469364
+"582","MASB","Caleta Olivia","vertical",0.873239436619718,0.3061604749218
+"583","MASB","Camarones","horizontal",34.9360529217198,0.916637957407221
+"584","MASB","Camarones","vertical",23.2413793103448,1.8584311179966
+"585","MASB","Canal Beagle","horizontal",0.0576131687242799,0.0347943794196376
+"586","MASB","Canal Beagle","vertical",0.5,0.180268639803995
+"587","MASB","Comodoro Rivadavia","horizontal",2.29251700680272,0.321359474250843
+"588","MASB","Comodoro Rivadavia","vertical",3.25806451612903,0.771770401446847
+"589","MASB","Isla de los Estados","horizontal",0.503215434083602,0.0491603167848232
+"590","MASB","Isla de los Estados","vertical",0.993464052287583,0.173863386388369
+"591","MASB","Las Grutas","horizontal",4.42207792207792,0.89247875708649
+"592","MASB","Las Grutas","vertical",0.743243243243243,0.189565659172902
+"593","MASB","Puerto Deseado","horizontal",35.3410852713179,2.24900057063975
+"594","MASB","Puerto Deseado","vertical",6.17391304347826,2.13353811241483
+"595","MASB","Puerto Lobos","horizontal",39.3298969072165,2.11497724536441
+"596","MASB","Puerto Lobos","vertical",15.6734693877551,1.73851619700929
+"597","MASB","Puerto Piramides","horizontal",3.44878048780488,0.252614837687807
+"598","MASB","Puerto Piramides","vertical",1.02150537634409,0.152468211797339
+"599","MASB","Punta Buenos Aires","horizontal",9.34375,1.30844640204645
+"600","MASB","Punta Buenos Aires","vertical",6.40000000000001,0.924932223793587
+"601","MASG","Caleta Olivia","horizontal",0.0410447761194031,0.0132425923098793
+"602","MASG","Caleta Olivia","vertical",0,0
+"603","MASG","Camarones","horizontal",0.439911797133408,0.0492782667609284
+"604","MASG","Camarones","vertical",0.129310344827586,0.0415771756051721
+"605","MASG","Canal Beagle","horizontal",0.271604938271605,0.0892167654051952
+"606","MASG","Canal Beagle","vertical",0.0446428571428571,0.023347553319376
+"607","MASG","Comodoro Rivadavia","horizontal",1.25170068027211,0.211240271885397
+"608","MASG","Comodoro Rivadavia","vertical",1,0.311085508419128
+"609","MASG","Isla de los Estados","horizontal",0.533762057877815,0.0804632751819024
+"610","MASG","Isla de los Estados","vertical",0.954248366013071,0.193713521878937
+"611","MASG","Las Grutas","horizontal",0.0064935064935065,0.0064935064935065
+"612","MASG","Las Grutas","vertical",0,0
+"613","MASG","Puerto Deseado","horizontal",0.0310077519379844,0.0172595092116912
+"614","MASG","Puerto Deseado","vertical",0.0434782608695652,0.0434782608695652
+"615","MASG","Puerto Lobos","horizontal",0.319587628865979,0.0780664743624106
+"616","MASG","Puerto Lobos","vertical",0.0204081632653061,0.0204081632653061
+"617","MASG","Puerto Piramides","horizontal",0.024390243902439,0.0108001815309768
+"618","MASG","Puerto Piramides","vertical",0,0
+"619","MASG","Punta Buenos Aires","horizontal",4.83125,0.546876628479157
+"620","MASG","Punta Buenos Aires","vertical",3.84347826086957,0.669208499586499
+"621","MASR","Caleta Olivia","horizontal",5.45522388059702,0.495020521561307
+"622","MASR","Caleta Olivia","vertical",6.23943661971831,0.866191457670303
+"623","MASR","Camarones","horizontal",6.41345093715548,0.314630080280671
+"624","MASR","Camarones","vertical",8.78448275862069,0.684241778735069
+"625","MASR","Canal Beagle","horizontal",1.34979423868313,0.220735287385361
+"626","MASR","Canal Beagle","vertical",2.38392857142857,0.378229452337539
+"627","MASR","Comodoro Rivadavia","horizontal",1.2108843537415,0.288672115073754
+"628","MASR","Comodoro Rivadavia","vertical",7.61290322580645,0.897640179072703
+"629","MASR","Isla de los Estados","horizontal",12.1736334405145,0.691120783496194
+"630","MASR","Isla de los Estados","vertical",5.06535947712418,0.458988246105667
+"631","MASR","Las Grutas","horizontal",0.448051948051948,0.102610939915907
+"632","MASR","Las Grutas","vertical",2.28378378378378,0.406135957829681
+"633","MASR","Puerto Deseado","horizontal",30.437984496124,1.8435371437138
+"634","MASR","Puerto Deseado","vertical",29.9130434782609,3.3266875378103
+"635","MASR","Puerto Lobos","horizontal",1.5979381443299,0.162823162597125
+"636","MASR","Puerto Lobos","vertical",4.77551020408163,0.793396055652239
+"637","MASR","Puerto Piramides","horizontal",24.2634146341463,0.686722049911342
+"638","MASR","Puerto Piramides","vertical",9.09139784946237,0.627645722101195
+"639","MASR","Punta Buenos Aires","horizontal",1.64375,0.146324700054065
+"640","MASR","Punta Buenos Aires","vertical",4.4,0.463594551808818

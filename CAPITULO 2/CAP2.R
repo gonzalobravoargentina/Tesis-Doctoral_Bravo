@@ -1,0 +1,818 @@
+library(vegan)
+#library(devtools) for installing pairwiseAdonis packaged from GitHUb
+#install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+library(pairwiseAdonis)
+library(rich)
+library(ggplot2)
+library(cowplot)
+library(doBy)
+library(reshape)
+
+
+#DATA---------------------------------------------------------
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+## data sources
+Data <- "Data"
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#Cover-percentage Data
+library(readr)
+Cover.data <- read.csv(file.path(Data, "Percent_Cover_Data_onlysessile.csv"))
+#Cover.data<- read.csv("Percent_Cover_Data.csv")
+
+
+#Density Data
+Density.data <- read.csv(file.path(Data,"Density_Data.csv"))
+#take out row (photos) with cero organisms on it 
+#Density.data <- Density.data[which(rowSums(Density.data[,-(1:20)]) > 0),]
+#calculate abundance.m-2
+Density.data[,-(1:20)] <- Density.data[,-(1:20)]/0.0625
+
+#Presence-absence Data
+Presence.absence.data <- read.csv(file.path(Data,"Presence_Absence_Data.csv"))
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#FIGURE 1 =MAPA
+
+#FIGURE 2----
+#nMDS Cover data----
+#Comparations of benthic communities among surface orientations on the rocky reefs
+#nMDS plot surface orientation in different depths (percentage cover data)
+
+#___________________________________________________________________________________________________
+
+
+#Shallow reefs
+Cover.data_shallow <- subset(Cover.data,Depth=="shallow")
+#nMDS calculations (no transformation + Bray)
+nMDSshallow=metaMDS(Cover.data_shallow[,-(1:20)],k=2,trymax=10,try = 10,distance ="bray",autotransform = FALSE)
+NMDS1.shallow <-nMDSshallow$points[,1] 
+NMDS2.shallow <- nMDSshallow$points[,2]
+MDS.plot<-cbind(Cover.data_shallow[,-(1:20)], NMDS1.shallow, NMDS2.shallow,Cover.data_shallow$reef.area) 
+#nMDS plot shallow
+nMDSshallowplot <- ggplot(MDS.plot, aes(NMDS1.shallow, NMDS2.shallow, color=Cover.data_shallow$reef.area,shape=Cover.data_shallow$reef.area))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "none",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + scale_color_brewer(palette="Spectral",name = "Reef surface orientation", labels = c("Cavefloor", "Horizontal", "Overhang","Vertical"))+ annotate("text", x=max(NMDS1.shallow)-0.5, y=min(NMDS2.shallow)-0.5, label=paste('Stress =',round(nMDSshallow$stress,3)))+ggtitle("   Arrecifes rocosos someros")
+
+#___________________________________________________________________________________________________
+#medium reefs
+Cover.data_medium <- subset(Cover.data,Depth=="medium")
+#nMDS calculations (no transformation + Bray)
+nMDSmedium=metaMDS(Cover.data_medium[,-(1:20)],k=2,trymax=10,try = 10,distance ="bray",autotransform = FALSE)
+NMDS1.medium <-nMDSmedium$points[,1] 
+NMDS2.medium <- nMDSmedium$points[,2]
+MDS.plot<-cbind(Cover.data_medium[,-(1:20)], NMDS1.medium, NMDS2.medium,Cover.data_medium$reef.area) 
+#nMDS plot medium
+nMDSmediumplot <- ggplot(MDS.plot, aes(NMDS1.medium, NMDS2.medium, color=Cover.data_medium$reef.area,shape=Cover.data_medium$reef.area))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "none",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + scale_color_brewer(palette="Spectral",name = "Reef surface orientation", labels = c("Cavefloor", "Horizontal", "Overhang","Vertical"))+ annotate("text", x=max(NMDS1.medium)-0.5, y=min(NMDS2.medium), label=paste('Stress =',round(nMDSmedium$stress,3)))+ggtitle("   Arrecifes rocosos medios")
+
+#___________________________________________________________________________________________________
+#deep reefs
+Cover.data_deep <- subset(Cover.data,Depth=="deep")
+#nMDS calculations (no transformation + Bray)
+nMDSdeep=metaMDS(Cover.data_deep[,-(1:20)],k=2,trymax=10,try = 10,distance ="bray",autotransform = FALSE)
+NMDS1.deep <-nMDSdeep$points[,1] 
+NMDS2.deep <- nMDSdeep$points[,2]
+MDS.plot<-cbind(Cover.data_deep[,-(1:20)], NMDS1.deep, NMDS2.deep,Cover.data_deep$reef.area) 
+#nMDS plot deep
+nMDSdeepplot <- ggplot(MDS.plot, aes(NMDS1.deep, NMDS2.deep, color=Cover.data_deep$reef.area,shape=Cover.data_deep$reef.area))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "none",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank())+ 
+scale_color_brewer(palette="Spectral",name = "Reef surface orientation", labels = c("Cavefloor", "Horizontal", "Overhang","Vertical"))+ annotate("text", x=max(NMDS1.deep)-0.5, y=min(NMDS2.deep)-0.2, label=paste('Stress =',round(nMDSdeep$stress,3)))+ggtitle("   Arrecifes rocosos profundos")
+
+#legend
+legend <- ggplot(MDS.plot, aes(NMDS1.deep, NMDS2.deep, color=Cover.data_deep$reef.area,shape=Cover.data_deep$reef.area))+geom_point(position=position_jitter(.1),size=3)+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank())+ scale_shape_manual(name = "Inclinacion del sustrato", labels = c("Cavefloor", "Horizontal", "Overhang","Vertical"),values = c(16,17,15,3))+ scale_color_brewer(palette="Spectral",name = "Inclinacion del sustrato", labels = c("Cavefloor", "Horizontal", "Overhang","Vertical"))  + theme(legend.key.size = unit(3,"line"))
+
+#SAVE PLOT
+legend_plot <- get_legend(legend)
+nMDSbydepth <- plot_grid(nMDSshallowplot,nMDSmediumplot,nMDSdeepplot,ncol = 1, align = "v")
+nMDSbydepthfig2 <- plot_grid(nMDSbydepth, legend_plot, ncol = 1, rel_heights = c(1,.09))
+
+ggsave(filename = "nMDSbydepth.pdf",plot =nMDSbydepthfig2,width=180,height =300,units = "mm", device="pdf")
+
+#eps
+#ggsave(here("Figures"),filename = "figure2.eps",plot =nMDSbydepthfig2,width=180,height =300,units = "mm", device="eps",dpi = 300)
+#TIFF
+#ggsave(here("Figures"),filename = "figure2.tiff",plot =nMDSbydepthfig2,width=180,height =300,units = "mm", device="tiff",dpi = 300)
+#jpeg
+#ggsave(here("Figures"),filename = "figure2.jpeg",plot =nMDSbydepthfig2,width=180,height =300,units = "mm", device="jpeg",dpi = 300)
+
+
+
+#PERMANOVA with cover data----------------------
+#Prior to PERMANOVA I used betadisper() to test for homogeneity of multivariate dispersion.  
+#If PERMANOVA is significant but PERMDISP IS NOT, then you can infer that there is only a location effect. If both tests are significant, then there is a dispersion effect for sure and there might also be (not always) a location effect.
+# Perform both tests (PERMANOVA and PERMDISP) will help to determine the nature of the difference between any pair of groups, whether it be due to location, spread, or a combination of the two.Function adonis studied the differences in the group means, but function betadisper studies the differences in group homogeneities.
+
+#MODEL- Effects of reef surface orientationson benthic communities -->Factor= Reef.area (Fixed), levels= Horizontal,Vertical, Overhang, cavefloor
+
+#Shallow
+Cover.data_shallow.bc <- vegdist(log(Cover.data_shallow[,-(1:20)]+1),method = "bray")
+
+#PERMDISP
+PERMDISP.shallow <- betadisper(Cover.data_shallow.bc, Cover.data_shallow$reef.area)
+PERMDISP.shallow
+anova(PERMDISP.shallow)
+permutest(PERMDISP.shallow, pairwise = TRUE, permutations = 999)
+(PERMDISP.shallow.HSD <- TukeyHSD(PERMDISP.shallow))
+
+adonis(Cover.data_shallow[,-(1:20)]~Cover.data_shallow$reef.area,sim.method = "bray")
+
+#PARWISE PERMANOVA
+pairwise.adonis(log(Cover.data_shallow[,-(1:20)]+1),Cover.data_shallow$reef.area,sim.method ="bray")
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#Medium
+Cover.data_medium.bc <- vegdist(log(Cover.data_medium[,-(1:20)]+1),method = "bray")
+
+#PERMDISP
+PERMDISP.medium <- betadisper(Cover.data_medium.bc, Cover.data_medium$reef.area)
+PERMDISP.medium
+anova(PERMDISP.medium)
+permutest(PERMDISP.medium, pairwise = TRUE, permutations = 999)
+(PERMDISP.medium.HSD <- TukeyHSD(PERMDISP.medium))
+
+adonis(Cover.data_medium[,-(1:20)]~Cover.data_medium$reef.area,sim.method = "bray")
+
+#PAIRWISE PERMANOVA
+pairwise.adonis(log(Cover.data_medium[,-(1:20)]+1),Cover.data_medium$reef.area,sim.method ="bray")
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#Deep
+Cover.data_deep.bc <- vegdist(log(Cover.data_deep[,-(1:20)]+1),method = "bray")
+
+#PERMDISP
+PERMDISP.deep <- betadisper(Cover.data_deep.bc, Cover.data_deep$reef.area)
+PERMDISP.deep
+anova(PERMDISP.deep)
+permutest(PERMDISP.deep, pairwise = TRUE, permutations = 999)
+(PERMDISP.deep.HSD <- TukeyHSD(PERMDISP.deep))
+
+adonis(Cover.data_deep[,-(1:20)]~Cover.data_deep$reef.area,sim.method = "bray")
+
+#PAIRWISE PERMANOVA
+pairwise.adonis(log(Cover.data_deep[,-(1:20)]+1),Cover.data_deep$reef.area,sim.method ="bray")
+
+
+#INDICATOR VALUE INDICES (inval)----------
+library(indicspecies)
+wetpt = multipatt(Cover.data[,-(1:20)], Cover.data$reef.area,control = how(nperm=999)) 
+summary(wetpt) 
+summary(wetpt,alpha=1) 
+summary(wetpt,indvalcomp=TRUE)
+
+#covergae
+indvalori = multipatt(Cover.data[,-(1:20)], Cover.data$reef.area,duleg = TRUE,control = how(nperm=999)) 
+summary(indvalori,indvalcomp=TRUE) 
+
+coverage(Cover.data[,-(1:20)], indvalori,At = 0.8, alpha = 0.05)
+
+plotcoverage(x=Cover.data[,-(1:20)], y=indvalori, group="horizontal", lty=1) 
+plotcoverage(x=Cover.data[,-(1:20)], y=indvalori, group="vertical", lty=2, col="blue", add=TRUE) 
+plotcoverage(x=Cover.data[,-(1:20)], y=indvalori, group="overhang", lty=3, col="red", add=TRUE) 
+plotcoverage(x=Cover.data[,-(1:20)], y=indvalori, group="cavefloor", lty=3, col="gray", add=TRUE) 
+legend(x = 0.01, y=20, legend=c("group 1","group 2", "group 3"),lty=c(1,2,3), col=c("black","blue","red"), bty="n")
+
+#Generating species combinations
+wetcomb = combinespecies(Cover.data[,-(1:20)], max.order = 2)$XC 
+dim(wetcomb)
+
+indvalspcomb = multipatt(wetcomb, Cover.data$reef.area, duleg = TRUE, control = how(nperm=999)) 
+summary(indvalspcomb, indvalcomp = TRUE)
+
+
+sc= indicators(X=Cover.data[,-(1:20)], cluster=Cover.data$reef.area, group="vertical",max.order = 3, verbose=TRUE,At=0.5, Bt=0.2)
+print(sc, sqrtIVt = 0.6)
+sc2=pruneindicators(sc, At=0.8, Bt=0.2, verbose=TRUE)
+print(sc2)
+
+
+#presence-absence data
+phi <- multipatt(Presence.absence.data[,-(1:20)], Presence.absence.data$reef.area, func = "r.g",control = how(nperm=999))
+summary(phi)
+round(head(phi$str),3)
+
+#PERMANOVA two-ways------------
+Cover.data.bc <- vegdist(log(Cover.data[,-(1:20)]+1),method = "bray")
+PERMDISP<- betadisper(Cover.data.bc, paste(Cover.data$reef.area,Cover.data$Depth))
+PERMDISP
+anova(PERMDISP)
+permutest(PERMDISP, pairwise = TRUE, permutations = 999)
+(PERMDISP.HSD <- TukeyHSD(PERMDISP))
+
+adonis(log(Cover.data[,-(1:20)]+1)~Cover.data$reef.area*Cover.data$Depth,sim.method = "bray")
+
+
+reef.area<- Cover.data$reef.area
+Depth<- Cover.data$Depth
+pairwise.adonis(log(Cover.data[,-(1:20)]+1), paste(Depth,reef.area),sim.method ="bray")
+
+
+#PERMANOVA REEFS 
+pairwise.adonis(Cover.data[,-(1:20)], reef.name,sim.method ="bray")
+
+
+#PERMANOVA DEPTH------
+pairwise.adonis(Cover.data[,-(1:20)], Depth,sim.method ="bray")
+Depth<- Presence.absence.data$Depth
+pairwise.adonis(Presence.absence.data[,-(1:20)],Depth,sim.method ="jaccard")
+
+#PERMANOVA one-way for Vertical and horizontal surfaces
+Cover.data.surfaceorientation <- subset(Cover.data,reef.area=="overhang") #select surface orientation
+Cover.data.surfaceorientation.bc <- vegdist(log(Cover.data.surfaceorientation[,-(1:20)]+1),method = "bray")
+PERMDISP<- betadisper(Cover.data.surfaceorientation.bc, Cover.data.surfaceorientation$Depth)
+TukeyHSD(PERMDISP)
+
+pairwise.adonis(log(Cover.data.surfaceorientation[,-(1:20)]+1),Cover.data.surfaceorientation$Depth,sim.method ="bray")
+
+
+nMDS=metaMDS(log(Cover.data.surfaceorientation[,-(1:20)]+1),k=2,trymax=10,try = 10,distance ="bray",autotransform = FALSE)
+NMDS1 <-nMDS$points[,1] 
+NMDS2<- nMDS$points[,2]
+MDS.plot<-cbind(log(Cover.data.surfaceorientation[,-(1:20)]+1), NMDS1, NMDS2,Cover.data.surfaceorientation$Depth) 
+
+#nMDS plot 
+ggplot(MDS.plot, aes(NMDS1, NMDS2, color=Cover.data.surfaceorientation$Depth,shape=Cover.data.surfaceorientation$Depth))+geom_point(position=position_jitter(.1),size=2)+stat_ellipse(type='t',size =2) +theme_bw() + theme(legend.position = "none",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1)-0.5, y=min(NMDS2)-0.5, label=paste('Stress =',round(nMDS$stress,3)))
+
+
+#Richness Analysis-------------------------------------------
+#Comparisons among reef surface orientations
+
+#Factors
+depth <- Presence.absence.data$Depth
+reefname <- Presence.absence.data$reef.name
+reefarea <- Presence.absence.data$reef.area
+presence_absence<-Presence.absence.data[,-(1:20)]
+sppnumber <- specnumber(presence_absence)
+specpool(presence_absence)
+#Data Frame with spp number per photoquadrat
+spp <- data.frame(reefname,reefarea,depth,sppnumber)
+
+
+#All reefs and orientations from presence absence matrix 
+totalrichness <- rich(Presence.absence.data[,-(1:20)],nrandom=499,verbose=TRUE)
+
+#All reefs and orientations from cover matrix
+totalrichness_cover <- rich(Cover.data[,-(1:20)],nrandom=499,verbose=TRUE)
+
+
+#Subset data by reef depth
+Presence.absence.data.shallow <- subset(Presence.absence.data, Depth=="shallow")
+Presence.absence.data.shallow <- Presence.absence.data.shallow[,-(1:20)]
+Presence.absence.data.medium <- subset(Presence.absence.data, Depth=="medium")
+Presence.absence.data.medium <- Presence.absence.data.medium[,-(1:20)]
+Presence.absence.data.deep<- subset(Presence.absence.data, Depth=="deep")
+Presence.absence.data.deep <- Presence.absence.data.deep[,-(1:20)]
+
+#some richness data by depth 
+specpool(Presence.absence.data.shallow)
+specpool(Presence.absence.data.medium)
+specpool(Presence.absence.data.deep)
+
+#Create alist with data from the 3 depth levels
+list.data.spp.depth<-list(Presence.absence.data.shallow,Presence.absence.data.medium,Presence.absence.data.deep)
+names(list.data.spp.depth)<-c("shallow","medium","deep")
+
+#Table of shared spp by depth-----
+shared(list.data.spp.depth)
+
+
+
+#Calculate richness statistics using "rich" for each depth 
+rich.results.depth <- lapply(list.data.spp.depth, function (j) {
+  richness.results <- rich(matrix=j, nrandom=499,verbose=TRUE)
+})
+
+
+#create .csv with observations data by depth
+Observations_depth <- as.data.frame(rich.results.depth[[1]]$sumcol)
+Observations_depth$S <- Observations_depth$`rich.results.depth[[1]]$sumcol`
+Observations_depth$M <- as.numeric(rich.results.depth[[2]]$sumcol)
+Observations_depth$D <- as.numeric(rich.results.depth[[3]]$sumcol)
+
+write.csv(x=Observations_depth, file="Observations_depth.csv")
+
+
+#comparison using "c2cv" and "c2m"
+#shallow[1] vs medium[2]
+c2cv(com1=rich.results.depth[[1]]$matrix,com2=rich.results.depth[[2]]$matrix,nrandom=999,verbose=F)
+x<-rich(rich.results.depth[[1]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results.depth[[2]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=F)
+
+#shallow[1] vs deep[3]
+c2cv(com1=rich.results.depth[[1]]$matrix,com2=rich.results.depth[[3]]$matrix,nrandom=999,verbose=F)
+x<-rich(rich.results.depth[[1]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results.depth[[3]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=F)
+
+#medium[2] vs deep[3]
+c2cv(com1=rich.results.depth[[2]]$matrix,com2=rich.results.depth[[3]]$matrix,nrandom=999,verbose=F)
+x<-rich(rich.results.depth[[2]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results.depth[[3]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=F)
+
+
+ 
+#data subset by surface orientation
+Presence.absence.data.horizontal <- subset(Presence.absence.data, reef.area=="horizontal")
+Presence.absence.data.horizontal <- Presence.absence.data.horizontal[,-(1:20)]
+Presence.absence.data.vertical <- subset(Presence.absence.data, reef.area=="vertical")
+Presence.absence.data.vertical <- Presence.absence.data.vertical[,-(1:20)]
+Presence.absence.data.overhang <- subset(Presence.absence.data, reef.area=="overhang")
+Presence.absence.data.overhang <- Presence.absence.data.overhang[,-(1:20)]
+Presence.absence.data.cavefloor <- subset(Presence.absence.data, reef.area=="cavefloor")
+Presence.absence.data.cavefloor <- Presence.absence.data.cavefloor[,-(1:20)]
+
+list.data.spp<-list(Presence.absence.data.horizontal,Presence.absence.data.vertical,Presence.absence.data.overhang,Presence.absence.data.cavefloor)
+names(list.data.spp)<-c("horizontal","vertical","overhang","cavefloor")
+
+#table of shared spp for surfaces orientations-----
+shared(list.data.spp)
+
+#% 
+48*100/70
+54*100/70
+40*100/70
+48*100/70
+
+#Richness stats by surface orientation 
+rich.results <- lapply(list.data.spp, function (j) {
+  richness.results <- rich(matrix=j, nrandom=499,verbose=TRUE)
+})
+# observed cumulative species richness
+rich.results[[1]]$cr
+# observed mean value of species richness over the n samples
+rich.results[[1]]$mr
+#rare species
+rich.results[[1]]$uniques
+rich.results[[1]]$duplicates
+rich.results[[2]]$uniques
+rich.results[[2]]$duplicates
+rich.results[[3]]$uniques
+rich.results[[3]]$duplicates
+rich.results[[4]]$uniques
+rich.results[[4]]$duplicates
+
+#create csv with observation data by orientation
+Observations_orientations <- as.data.frame(rich.results[[1]]$sumcol)
+Observations_orientations$H <- Observations_orientations$`rich.results[[1]]$sumcol`
+Observations_orientations$V <- as.numeric(rich.results[[2]]$sumcol)
+Observations_orientations$O <- as.numeric(rich.results[[3]]$sumcol)
+Observations_orientations$C <- as.numeric(rich.results[[4]]$sumcol)
+
+write.csv(x=Observations_orientations, file="Observations_orientation.csv")
+
+
+
+#horizontal[1] vs vertical[2]
+c2cv(com1=rich.results[[1]]$matrix,com2=rich.results[[2]]$matrix,nrandom=999,verbose=FALSE)
+x<-rich(rich.results[[1]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results[[2]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
+
+#horizontal[1] vs overhang [3]
+c2cv(com1=rich.results[[1]]$matrix,com2=rich.results[[3]]$matrix,nrandom=999,verbose=FALSE)
+x<-rich(rich.results[[1]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results[[3]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
+
+#horizontal[1] vs cavefloor [4]
+c2cv(com1=rich.results[[1]]$matrix,com2=rich.results[[4]]$matrix,nrandom=999,verbose=FALSE)
+x<-rich(rich.results[[1]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results[[4]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
+
+#vertical[2] vs overhang [3]
+c2cv(com1=rich.results[[2]]$matrix,com2=rich.results[[3]]$matrix,nrandom=999,verbose=FALSE)
+x<-rich(rich.results[[2]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results[[3]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
+
+#vertical[2] vs cavefloor [4]
+c2cv(com1=rich.results[[2]]$matrix,com2=rich.results[[4]]$matrix,nrandom=999,verbose=FALSE)
+x<-rich(rich.results[[2]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results[[4]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
+
+#overhang [3] vs cavefloor [4]
+c2cv(com1=rich.results[[3]]$matrix,com2=rich.results[[4]]$matrix,nrandom=999,verbose=FALSE)
+x<-rich(rich.results[[3]]$matrix,nrandom=50,verbose=TRUE)
+y<-rich(rich.results[[4]]$matrix,nrandom=50,verbose=TRUE)
+c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#FIGURE 4-----
+#Boxplot for spp richnnes by depth--------------
+richnessBYdepth <- ggplot(data=spp, mapping=aes(x=depth, y=sppnumber)) +geom_boxplot()  + scale_x_discrete(limits=c("shallow", "medium","deep"),labels=c("Somero", "Medio","Profundo")) + labs(title="",x="Profundidad", y = "Taxa por fotocuadrante") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),text = element_text(size=12)) + annotate("text", x=c(1,2,3), y=c(12.3,14.1,16), label="*",size=8)
+
+#save plot for half page 
+ggsave(here("Figures"),filename = "figure4.eps",plot = richnessBYdepth,width=85,height =85,units = "mm", device="eps")
+#tiff
+ggsave(here("Figures"),filename = "figure4.tiff",plot = richnessBYdepth,width=85,height =85,units = "mm", device="tiff",dpi = 300)
+
+#jpeg
+ggsave(here("Figures"),filename = "figure4.jpeg",plot = richnessBYdepth,width=85,height =85,units = "mm", device="jpeg",dpi = 300)
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#FIGURE 6-------------
+#Boxplot for spp richnnes by surfaceorientations-------------
+richnessBYorientation <- ggplot(data=spp, mapping=aes(x=reefarea, y=sppnumber)) +geom_boxplot()  + scale_x_discrete(limits=c("horizontal", "vertical","overhang","cavefloor"),labels=c("Horizontal", "Vertical","Techo Alero","Piso Alero")) + labs(title="",x="Inclinación del arrecife", y = "Taxa por fotocuadrantes")+theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),text = element_text(size=12)) + annotate("text", x=2, y=16, label="*",size=8)
+
+#save plot for half page 
+ggsave(here("Figures"),filename = "figure6.eps",plot = richnessBYorientation,width=85,height =85,units = "mm", device="eps")
+
+#tiff
+ggsave(here("Figures"),filename = "figure6.tiff",plot = richnessBYorientation,width=85,height =85,units = "mm", device="tiff",dpi = 300)
+
+#jpeg
+ggsave(here("Figures"),filename = "figure6.jpeg",plot = richnessBYorientation,width=85,height =85,units = "mm", device="jpeg",dpi = 300)
+
+# Table Richness by orientation
+spp <- data.frame(reefname,depth,sppnumber,reefarea)
+richnes.reefarea <-  summaryBy(sppnumber ~ reefarea ,data = spp, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),min=min(x),max=max(x))})
+
+
+richnesreefandinclination <-  summaryBy(sppnumber ~ reefname+ reefarea ,data = spp, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),min=min(x),max=max(x))})
+
+write.csv(x=richnesreefandinclination, file="richnesreefandinclination.csv")
+
+#Observations-------------------------------------------------
+
+#all obs for table orientations vs depth
+Observations <- as.data.frame(colSums(Presence.absence.data[,-(1:20)]))
+#shallow vs surfaces 
+Presence.absence.data.shallow.h <- subset(Presence.absence.data, Depth=="shallow"& reef.area=="horizontal")
+Observations$SH <- as.numeric(colSums(Presence.absence.data.shallow.h [,-(1:20)]))
+Presence.absence.data.shallow.v <- subset(Presence.absence.data, Depth=="shallow"& reef.area=="vertical")
+Observations$SV <- as.numeric(colSums(Presence.absence.data.shallow.v [,-(1:20)]))
+Presence.absence.data.shallow.o <- subset(Presence.absence.data, Depth=="shallow"& reef.area=="overhang")
+Observations$SO <- as.numeric(colSums(Presence.absence.data.shallow.o [,-(1:20)]))
+Presence.absence.data.shallow.c <- subset(Presence.absence.data, Depth=="shallow"& reef.area=="cavefloor")
+Observations$SC <- as.numeric(colSums(Presence.absence.data.shallow.c [,-(1:20)]))
+
+#medium vs surfaces 
+Presence.absence.data.medium.h <- subset(Presence.absence.data, Depth=="medium"& reef.area=="horizontal")
+Observations$MH <- as.numeric(colSums(Presence.absence.data.medium.h [,-(1:20)]))
+Presence.absence.data.medium.v <- subset(Presence.absence.data, Depth=="medium"& reef.area=="vertical")
+Observations$MV <- as.numeric(colSums(Presence.absence.data.medium.v [,-(1:20)]))
+Presence.absence.data.medium.o <- subset(Presence.absence.data, Depth=="medium"& reef.area=="overhang")
+Observations$MO <- as.numeric(colSums(Presence.absence.data.medium.o [,-(1:20)]))
+Presence.absence.data.medium.c <- subset(Presence.absence.data, Depth=="medium"& reef.area=="cavefloor")
+Observations$MC <- as.numeric(colSums(Presence.absence.data.medium.c [,-(1:20)]))
+
+
+#deep vs surfaces 
+Presence.absence.data.deep.h <- subset(Presence.absence.data, Depth=="deep"& reef.area=="horizontal")
+Observations$DH <- as.numeric(colSums(Presence.absence.data.deep.h [,-(1:20)]))
+Presence.absence.data.deep.v <- subset(Presence.absence.data, Depth=="deep"& reef.area=="vertical")
+Observations$DV <- as.numeric(colSums(Presence.absence.data.deep.v [,-(1:20)]))
+Presence.absence.data.deep.o <- subset(Presence.absence.data, Depth=="deep"& reef.area=="overhang")
+Observations$DO <- as.numeric(colSums(Presence.absence.data.deep.o [,-(1:20)]))
+Presence.absence.data.deep.c <- subset(Presence.absence.data, Depth=="deep"& reef.area=="cavefloor")
+Observations$DC <- as.numeric(colSums(Presence.absence.data.deep.c [,-(1:20)]))
+
+
+write.csv(x=Observations, file="Observations.csv")
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#Species accumulation curves ---------------------------------
+
+horizontal<- read.csv("Presence_Absence_Data.csv")
+horizontal<- subset(horizontal,reef.area== "horizontal")
+horizontal<- horizontal[,-(1:20)]
+horizontalaccucurve <- specaccum(horizontal,"rarefaction")
+vertical<- read.csv("Presence_Absence_Data.csv")
+vertical<- subset(vertical,reef.area== "vertical")
+vertical<- vertical[,-(1:20)]
+verticalaccucurve <- specaccum(vertical,"rarefaction")
+overhang<- read.csv("Presence_Absence_Data.csv")
+overhang<- subset(overhang,reef.area== "overhang")
+overhang<- overhang[,-(1:20)]
+overhangaccucurve <- specaccum(overhang,"rarefaction")
+cavefloor<- read.csv("Presence_Absence_Data.csv")
+cavefloor<- subset(cavefloor,reef.area== "cavefloor")
+cavefloor<- cavefloor[,-(1:20)]
+caveflooraccucurve <- specaccum(cavefloor,"rarefaction")
+
+
+plot(horizontalaccucurve, ci.type="line", col="#C77CFF", lwd=2, ci.lty=0, ci.col="lightblue",ylab="Número de especies", xlab = "Número de foto-cuadrantes",xlim=c(0,150),ylim=c(0,60))
+plot(verticalaccucurve,ci.type="line", col="#7CAE00", lwd=2, ci.lty=0, ci.col="lightblue",add=T)
+plot(overhangaccucurve, ci.type="line", col="#00BFC4", lwd=2, ci.lty=0, ci.col="lightblue",add=T)
+plot(caveflooraccucurve, ci.type="line", col="#F8766D", lwd=2, ci.lty=0, ci.col="lightblue",add=T)
+legend("bottomright", legend=c("horizontal", "vertical","overhang","cavefloor"),col=c("#C77CFF", "#7CAE00","#00BFC4","#F8766D"),lty=1,box.lty=0)
+abline(v=20, col="red")
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#Funtional Groups---------------------------------------------------------
+#Create colums with functional groups
+#all seaweed (11)
+names(Cover.data)
+Cover.data$algae <- as.numeric(paste(Cover.data$Macroalgae..Filamentous +
+                                         Cover.data$Lomentaria.clavellosa +
+                                         Cover.data$Dictyota.dichotoma + 
+                                         Cover.data$Hymenena.Phycodrys + 
+                                         Cover.data$Ulva.sp.+ 
+                                         Cover.data$Juvenile.Undaria.pinnatifida+
+                                         Cover.data$Codium.vermilara.fragile+
+                                         Cover.data$Colpomenia.sinuosa+
+                                         Cover.data$brown.encrusting.algae+
+                                         Cover.data$Crustose.coralline.algae+
+                                    Cover.data$Corallina.officinalis..substratum.))
+
+#Filter feeders (23)
+Cover.data$filterfeeder <- as.numeric(paste(Cover.data$Diplosoma.listerianum+ 
+                                              Cover.data$Lissoclinum.fragile + 
+                                              Cover.data$Aplidium.sp. + 
+                                              Cover.data$Colonial.tunicate+
+                                              Cover.data$Ascidiella.aspersa + 
+                                              Cover.data$Asterocarpa.humilis + 
+                                              Cover.data$Corella.eumyota + 
+                                              Cover.data$Ciona.intestinalis + 
+                                              Cover.data$Ciona.robusta+ 
+                                              Cover.data$Paramolgula.gregaria + 
+                                              Cover.data$Cliona.sp. + 
+                                              Cover.data$Sponge..Encrusting + 
+                                              Cover.data$Sponge..Repent + 
+                                              Cover.data$Sponge..Tubular + 
+                                              Cover.data$Sponge..massive.violet + 
+                                              Cover.data$Sponge..Masive + 
+                                              Cover.data$Darwinella.cf..rosacea+ 
+                                              Cover.data$Clathria.sp. +
+                                              Cover.data$Sponge..Calcareous+ 
+                                              Cover.data$Aulacomya.atra + 
+                                              Cover.data$Aequipecten.tehuelchus + 
+                                              Cover.data$Magellania.venosa  + 
+                                              Cover.data$Rock.boring.bivalves))
+
+#Suspensive feeders (11)
+Cover.data$suspensivefeeders <- as.numeric(paste(Cover.data$Anthothoe.chilensis  +
+                                  Cover.data$Corynactis.carnea+
+                                  Cover.data$Halcurias.sp. + 
+                                  Cover.data$Metridium.senile + 
+                                  Cover.data$Parabunodactis.imperfecta +
+                                  Cover.data$Tripalea.clavaria + 
+                                  Cover.data$Hydrozoan + 
+                                  Cover.data$Myxicola + 
+                                  Cover.data$Bryozoan + 
+                                  Cover.data$Austromegabalanus.psittacus +
+                                  Cover.data$Terebellidae+
+                                  Cover.data$Worms..Polychaetes..Tube.worms))
+
+#Baresubstrate (1)
+Cover.data$baresubstrate <- Cover.data$Bare.Substrate 
+
+
+#Predators/scavenger (11)
+#Cover.data$P.S <- as.numeric(paste( Cover.data$Arbacia.dufresnii + Cover.data$Cosmasterias.lurida + Cover.data$Cycethra.verrucosa+ Cover.data$Odontaster.penicillatus +          Cover.data$Diaulula.punctuolata + Cover.data$Doris.fontainii +Cover.data$Fissurellidea.patagonica + Cover.data$Pleurobranchaea.maculata))
+
+                                  
+#Filamentous algae (2)
+#Cover.data$filamentous.algae <- as.numeric(paste(Cover.data$Macroalgae..Filamentous +Cover.data$Lomentaria.clavellosa))
+
+#Laminarian algae (6)
+#Cover.data$laminarian.algae <-  as.numeric(paste(Cover.data$Dictyota.dichotoma +Cover.data$Hymenena.Phycodrys +Cover.data$Ulva.sp. +Cover.data$Juvenile.Undaria.pinnatifida +Cover.data$Codium.vermilara.fragile+Cover.data$Colpomenia.sinuosa))
+
+#Crustose algae (2)
+#Cover.data$crustose.algae <- as.numeric(paste(Cover.data$brown.encrusting.algae +                                           Cover.data$Crustose.coralline.algae))
+
+#algas coralinas erectas
+#Cover.data$coralinas.erectas <- Cover.data$Corallina.officinalis..substratum.
+
+#data frame functional groups 
+Cover.data.gruposfuncionales <- Cover.data[,c(1:20,68:71)]
+Cover.data <- Cover.data[,-(68:71)]
+
+#cover porcentage by feeding modes 
+library(doBy)
+Cover.data.gruposfuncionales.byreefarea <- summaryBy(Cover.data.gruposfuncionales[,-(1:20)] ~ reef.area,   data =Cover.data.gruposfuncionales, FUN = function(x) { c(mean = mean(x),SD=sd(x),SE = sqrt(var(x)/length(x)),n=length(x)) })
+
+Cover.data.gruposfuncionales.byreefarea_taxa <- summaryBy(Cover.data[,-(1:20)] ~ reef.area,   data =Cover.data, FUN = mean)
+
+
+Cover.data.gruposfuncionales.bydepth <- summaryBy(Cover.data.gruposfuncionales[,-(1:20)] ~ Depth,   data =Cover.data.gruposfuncionales, FUN = function(x) { c(mean = mean(x),SD=sd(x),SE = sqrt(var(x)/length(x)),n=length(x)) })
+
+Cover.data.gruposfuncionales.byreefarea.depth <- summaryBy(Cover.data.gruposfuncionales[,-(1:20)] ~ reef.area + Depth,   data =Cover.data.gruposfuncionales, FUN = function(x) { c(mean = mean(x),SD=sd(x),SE = sqrt(var(x)/length(x)),n=length(x)) })
+
+
+#Create data.frame with mean, SD, SE of funtional groups
+library(reshape)
+datacoverfunctiongroup <- melt(Cover.data.gruposfuncionales.byreefarea.depth, c("reef.area", "Depth"), c("algae.mean","filterfeeder.mean","suspensivefeeders.mean","baresubstrate.mean"))
+datacoverfunctiongroup.SE <- melt(Cover.data.gruposfuncionales.byreefarea.depth, c("reef.area", "Depth"), c("algae.SE","filterfeeder.SE","suspensivefeeders.SE","baresubstrate.SE"))
+datacoverfunctiongroup.SD <- melt(Cover.data.gruposfuncionales.byreefarea.depth, c("reef.area", "Depth"), c("algae.SD","filterfeeder.SD","suspensivefeeders.SD","baresubstrate.SD"))
+
+datacoverfunctiongroup$SE <- datacoverfunctiongroup.SE$value
+datacoverfunctiongroup$SD <- datacoverfunctiongroup.SD$value
+
+#FIGURE 3-----
+#Plots functional groups--------------
+
+legend.horizontal <- ggplot(subset(datacoverfunctiongroup,reef.area=="horizontal"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2.5)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Shallow","Mid","Deep"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Algae", "Filter feeder", "Suspension feeders", "Bare Substrate"),values = c(15,16,17,7))+
+  scale_linetype_manual(name = "",labels = c("Algae", "Filter feeder", "Suspension feeders", "Bare Substrate"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "", y = "Cover (%)", title = "Horizontal") +theme_bw()+ theme(legend.position = "bottom",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+horizontal <- ggplot(subset(datacoverfunctiongroup,reef.area=="horizontal"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2.5)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Shallow","Mid","Deep"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c(15,16,17,7))+
+  scale_linetype_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "", y = "Cover (%)", title = "Horizontal") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+vertical <- ggplot(subset(datacoverfunctiongroup,reef.area=="vertical"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2.5)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Shallow","Mid","Deep"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c(15,16,17,7))+
+  scale_linetype_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c("solid","dotted","longdash","dotdash"))+labs(fill = "",x = "", y = "Cover (%)", title = "Vertical") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+overhang <- ggplot(subset(datacoverfunctiongroup,reef.area=="overhang"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2.5)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Shallow","Mid","Deep"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c(15,16,17,7))+
+  scale_linetype_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c("solid","dotted","longdash","dotdash"))+labs(fill = "",x = "", y = "Cover (%)", title = "Overhang") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+cavefloor <- ggplot(subset(datacoverfunctiongroup,reef.area=="cavefloor"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2.5)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Shallow","Mid","Deep"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c(15,16,17,7))+
+  scale_linetype_manual(name = "",labels = c("Algae", "Filter feeder", "Suspensive Feeder", "Bare Substrate"),values = c("solid","dotted","longdash","dotdash"))+labs(fill = "",x = "", y = "Cover (%)", title = "Cavefloor") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+legend_plot <- get_legend(legend.horizontal)
+
+#plot grid with 4 plots 
+prow <- plot_grid(horizontal,vertical,overhang,cavefloor,ncol=2,align = "vh")
+# add the legend underneath the row. Give it 10% of the height of one plot (via rel_heights).
+plotcove <- plot_grid(prow, legend_plot, ncol = 1, rel_heights = c(1, .1))
+
+
+#saveplot for full page size
+ggsave(here("Figures"),filename = "figure3.eps",plot =plotcove,width=180,height =250,units = "mm", device="eps")
+
+#tiff
+ggsave(here("Figures"),filename = "figure3.tiff",plot =plotcove,width=180,height =250,units = "mm", device="tiff",dpi = 300)
+
+#jpeg
+ggsave(here("Figures"),filename = "figure3.jpeg",plot =plotcove,width=180,height =250,units = "mm", device="jpeg",dpi = 300)
+
+
+#Plots functional groups Español--------------
+
+legend.horizontal <- ggplot(subset(datacoverfunctiongroup,reef.area=="horizontal"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Somero","Medio","Profundo"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c(15,16,17,18))+
+  scale_linetype_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "", y = "Cobertura  (%)", title = "Horizontal") +theme_bw()+ theme(legend.position = "bottom",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+horizontal <- ggplot(subset(datacoverfunctiongroup,reef.area=="horizontal"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Somero","Medio","Profundo"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c(15,16,17,18))+
+  scale_linetype_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "", y = "Cobertura  (%)", title = "Horizontal") +theme_bw()+ theme(legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+vertical <- ggplot(subset(datacoverfunctiongroup,reef.area=="vertical"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Somero","Medio","Profundo"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c(15,16,17,18))+
+  scale_linetype_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "", y = "", title = "Vertical") +theme_bw()+ theme(legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+overhang <- ggplot(subset(datacoverfunctiongroup,reef.area=="overhang"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Somero","Medio","Profundo"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c(15,16,17,18))+
+  scale_linetype_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "Profundidad", y = "Cobertura  (%)", title = "Techo cueva") +theme_bw()+ theme(legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+cavefloor <- ggplot(subset(datacoverfunctiongroup,reef.area=="cavefloor"), aes(x=Depth, y=value, group=variable,shape=variable, linetype=variable)) +
+  geom_point(position = position_dodge(0.2),size=2)+
+  geom_line(position = position_dodge(0.2))+
+  geom_errorbar(linetype=1,aes(ymin=value - SE, ymax=value + SE),position = position_dodge(0.2), width = 0.2)+
+  scale_x_discrete(limits=c("shallow","medium","deep"),labels=c("Somero","Medio","Profundo"))+ 
+  scale_y_continuous(limits = c(0,100))+ 
+  scale_shape_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c(15,16,17,18))+
+  scale_linetype_manual(name = "",labels = c("Macroalgas", "Filtradores", "Suspensívoros", "Suelo desnudo"),values = c("solid","dotted","longdash","dotdash"))+
+  labs(fill = "",x = "Profundidad", y = "", title = "Piso cueva") +theme_bw()+ theme(legend.position = "none",legend.title =element_blank(),legend.key.size = unit(4,"line"))
+
+legend_plot <- get_legend(legend.horizontal)
+
+# add the legend underneath the row we made earlier. Give it 10%
+# of the height of one plot (via rel_heights).
+prow <- plot_grid(horizontal,vertical,overhang,cavefloor,ncol=2,align = "vh")
+plotcove <- plot_grid(prow, legend_plot, ncol = 1, rel_heights = c(1, .1))
+
+ggsave(filename = "plotcove.png",plot =plotcove,width=180,height =250,units = "mm", device="png")
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+#VennDiagram %-------------------------------------------------------------
+#FIGURE 5----
+library(VennDiagram)
+#https://stackoverflow.com/questions/17598134/compare-two-character-vectors-in-r/17598665
+
+# plot venn diagram and add some margin and enclosing box
+venndigram <- ggdraw(draw.triple.venn(48,61,58,43, 52, 40, 38, category =c("Shallow (48)", "Mid (61)","Deep (58)"),lty=c("dotted","longdash","solid"),col=c('grey',"black","darkgrey"),fontfamily="Arial",cat.fontfamily="Arial",cex=1.2,cat.cex=1,cat.pos = c(-20, 20, 180))) 
+
+
+#save plot for half page 
+ggsave(here("Figures"),filename = "figure5.eps",plot = venndigram,width=85,height =85,units = "mm", device="eps")
+
+#tiff 
+ggsave(here("Figures"),filename = "figure5.tiff",plot = venndigram,width=85,height =85,units = "mm", device="tiff",dpi = 300)
+
+#jpeg 
+ggsave(here("Figures"),filename = "figure5.jpeg",plot = venndigram,width=85,height =85,units = "mm", device="jpeg",dpi = 300)
+
+
+#SIMPER-------
+#The SIMPER analysis gives you the percentage of similarity and dissimilarity or your factors, between levels of your factors and for specific levels of your factors. Then it gives you which variables in your data explain the similarities or dissimilarity: the percentage of contribution of your variables (Contrib%) that explain this similarity. The variables are classified from the highest to the lowest contribution. It also show the cumulative contribution (Cum.%) so that you know how many variables explain for example 90% of the similarity... Do not forget that the % similarity = 100 - % dissimilarity and inversely.
+#A cut-off point of 95% of total dissimilarity between groups was used and the ratio of the average dissimilarity contri- bution of each species to the standard deviation (Dissim/ SD) was used as a guide to which species contributed most consistently to differences between groups across all samples. If the contribution of a species to dissimi- larity between, say, depth groups is consistent across all sample comparisons, the standard deviation will be low and the ratio Dissim/SD will be large, whereas, if that species’ contribution to dissimilarity between depths is high at only one location, the corresponding standard deviation will be high and the resulting Dissim/SD ratio small.
+
+simper_all <- simper(log(Cover.data[,-(1:20)]+1), Cover.data$reef.area, permutations = 999)
+simsum_all <- summary(simper_all)
+lapply(simper_all, FUN= function(x){x$overall})
+
+top20_all<-lapply(simsum_all, `[`,1:20,)
+
+
+simper_shallow <- simper(log(Cover.data_shallow[,-(1:20)]+1), Cover.data_shallow$reef.area, permutations = 999)
+simsum_shallow <- summary(simper_shallow)
+lapply(simper_shallow , FUN= function(x){x$overall})
+
+top20_shallow<-lapply(simsum_shallow, `[`,1:20,)
+
+
+simper_medium <- simper(log(Cover.data_medium[,-(1:20)]+1), Cover.data_medium$reef.area, permutations = 999)
+simsum_medium <- summary(simper_medium )
+lapply(simper_medium , FUN= function(x){x$overall})
+
+top10_medium<-lapply(simsum_medium, `[`,1:10,)
+top20_medium<-lapply(simsum_medium, `[`,1:20,)
+
+
+simper_deep <- simper(log(Cover.data_deep[,-(1:20)]+1), Cover.data_deep$reef.area, permutations = 999)
+simsum_deep <- summary(simper_deep )
+lapply(simper_deep , FUN= function(x){x$overall})
+
+top10_deep<-lapply(simsum_deep, `[`,1:10,)
+top20_deep<-lapply(simsum_deep, `[`,1:20,)
+
+#Abundace urchins-------------------------------------------------------------
+
+#Pseudechinus.magellanicus
+library(doBy)
+densitybyPseudechinus.magellanicus <- summaryBy(Pseudechinus.magellanicus  ~ reef.area + Depth,   data =Density.data, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),max=max(x),n=length(x)) })
+
+#calculate density only for Horizontal surfaces
+Density.data.horizontal <- subset(Density.data, reef.area=="horizontal")
+Pseudechinus.horizontal <- summaryBy(Pseudechinus.magellanicus  ~  Depth,   data =Density.data.horizontal, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),n=length(x),max= max(x)) })
+colnames(Pseudechinus.horizontal) <- c("Depth","Pseudechinus magellanicus","SD","SE","n photoquadrtas","max density")
+Arbacia.horizontal <- summaryBy(Arbacia.dufresnii  ~  Depth,   data =Density.data.horizontal, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),n=length(x),max= max(x)) })
+colnames(Arbacia.horizontal) <- c("Depth","Pseudechinus magellanicus","SD","SE","n photoquadrtas","max density")
+
+position <- c("deep","medium","shallow")
+l <- list(Pseudechinus.horizontal,Arbacia.horizontal)
+library(ggplot2)
+listplotsdensity<- lapply(l, function (j) ggplot(j, aes(y=j[,2], x=Depth)) + geom_bar(stat="identity", color="black",position=position_dodge(),na.rm = TRUE) +geom_errorbar(aes(ymin=j[,2], ymax=j[,2]+j[,4]), width=.2,position=position_dodge(.9),na.rm = TRUE)+coord_flip()+ scale_fill_grey(start = 0.2, end = .9)+theme_bw()+ theme(plot.title = element_text(size = 10, face = "italic"))+labs(y= expression(paste("Density (ind. m"^"-2",")")),x=element_blank())+ ggtitle(names(j[2]))+scale_x_discrete(limits = position,labels=c("Deep(16-25 m)","Medium(8-15 m)","Shallow (1-7 m )")))
+
