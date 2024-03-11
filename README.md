@@ -6,7 +6,7 @@
 **Co-director:** Dr. Juan Pablo Livore  
 **Universidad:** Universidad Nacional de la Patagonia San Juan Bosco
 
-Este repositorio contiene los códigos utilizados en la tesis doctoral de Gonzalo Bravo en la Universidad Nacional de la Patagonia San Juan Bosco, con beca CONICET.
+Este repositorio contiene los códigos y los datos utilizados en la tesis doctoral de Gonzalo Bravo en la Universidad Nacional de la Patagonia San Juan Bosco, con beca CONICET.
 
 ## Capítulos y Contenido
 
