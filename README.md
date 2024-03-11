@@ -44,7 +44,7 @@ Este repositorio contiene los códigos y los datos utilizados en la tesis doctor
 <table>
   <tr>
     <td><img src="https://ibiomar.conicet.gov.ar/wp-content/uploads/sites/44/2018/02/Sin-t%C3%ADtulo-1.png" alt="Logo 1" width="200"></td>
-    <td><img src="https://www.unp.edu.ar/images/principal/logo.png" alt="Logo 2" width="200"></td>
+    <td><img src="[https://www.unp.edu.ar/images/principal/logo.png](https://madryn.unp.edu.ar/images/sjb/logo_encabezado.png)https://madryn.unp.edu.ar/images/sjb/logo_encabezado.png" alt="Logo 2" width="200"></td>
   </tr>
 </table>
 
