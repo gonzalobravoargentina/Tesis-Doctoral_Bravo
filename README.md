@@ -11,7 +11,7 @@ Este repositorio contiene los códigos y los datos utilizados en la tesis doctor
 ## Capítulos y Contenido
 
 ### [Capítulo 1: Muestreos y registro de especies en los arrecifes rocosos patagónicos con técnicas fotográficas mediante buceo](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201)
-#### Archivos .CSV con los datos utilizados para este capítulo.
+##### Archivos .CSV con los datos utilizados para este capítulo.
 ##### [Air_Temperature_Data_METEOBLUE.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201/Data/Air_Temperature_Data_METEOBLUE.csv)
 ##### [Density_Data_BRAVO_RLS.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201/Data/Density_Data_BRAVO_RLS.csv)
 ##### [Density_Data_BRAVO.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201/Data/Density_Data_BRAVO.csv)
@@ -37,6 +37,9 @@ Este repositorio contiene los códigos y los datos utilizados en la tesis doctor
 
 ### [Capítulo 5: Repositorio de fotografías submarinas para uso libre y guía digital educativa de invertebrados, algas y peces en una plataforma de acceso libre](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%205)
 #### Archivos .CSV con los datos utilizados para este capítulo. 
+
+
+
 
 ![Logo](https://ibiomar.conicet.gov.ar/wp-content/uploads/sites/44/2018/02/Sin-t%C3%ADtulo-1.png)
 
