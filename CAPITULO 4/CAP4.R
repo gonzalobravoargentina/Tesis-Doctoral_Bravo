@@ -142,18 +142,21 @@ categorias_seleccionadas <- c("SC", "MAENRC", "MAFR","MAEFR", "MASB","MASR", "MA
 # Seleccionar las filas con las categorías deseadas
 Coverdata <- Coverdata[Coverdata$CATAMI %in% categorias_seleccionadas, ]
 
-Coverdata$site[Coverdata$site == "Puerto Piramides"] <- "Pto.Piramides"
-Coverdata$site[Coverdata$site == "Puerto Lobos"] <- "Pto.Lobos"
+Coverdata$site[Coverdata$site == "Las Grutas"] <- "L. Gtas."
+Coverdata$site[Coverdata$site == "Puerto Lobos"] <- "Pto. L."
+Coverdata$site[Coverdata$site == "Punta Buenos Aires"] <- "P. B. A."
+Coverdata$site[Coverdata$site == "Puerto Piramides"] <- "Pto. P."
+Coverdata$site[Coverdata$site == "Camarones"] <- "Cms"
+Coverdata$site[Coverdata$site == "Comodoro Rivadavia"] <- "C. R."
+Coverdata$site[Coverdata$site == "Caleta Olivia"] <- "C. O."
+Coverdata$site[Coverdata$site == "Puerto Deseado"] <- "Pto. D."
 Coverdata$site[Coverdata$site == "Isla de los Estados"] <- "IDLE"
-Coverdata$site[Coverdata$site == "Punta Buenos Aires"] <- "Pta.BS AS"
-Coverdata$site[Coverdata$site == "Puerto Deseado"] <- "Pto.Deseado"
-Coverdata$site[Coverdata$site == "Comodoro Rivadavia"] <- "C.Rivadavia"
-
+Coverdata$site[Coverdata$site == "Canal Beagle"] <- "Beagle"
 
 # Define el orden personalizado de los sitios
-orden_sitios <- c("Las Grutas", "Pto.Lobos", "Pta.BS AS", "Pto.Piramides", 
-                  "Camarones", "C.Rivadavia", "Caleta Olivia", "Pto.Deseado", 
-                  "IDLE", "Canal Beagle")
+orden_sitios <- c("L. Gtas.", "Pto. L.", "P. B. A.", "Pto. P.", 
+                  "Cms", "C. R.", "C. O.", "Pto. D.", 
+                  "IDLE", "Beagle")
 
 # Convierte la columna "site" en un factor con el orden personalizado
 Coverdata$site <- factor(Coverdata$site, levels = orden_sitios)
@@ -169,8 +172,8 @@ ggplot(Coverdata, aes(x = reef_area, y = cover.mean, fill = factor(reef_area))) 
   theme(legend.position = "none", panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank()) +
   scale_fill_brewer(palette = "Set2") +
   facet_grid(site ~ CATAMI) +
-  theme(strip.text.x = element_text(size = 10), strip.text.y = element_text(size = 7)) +
-  theme(axis.text.x = element_text(size = 10, angle = 45, hjust = 1), axis.text.y = element_text(size = 10), axis.title.y = element_text(size = 10))
+  theme(strip.text.x = element_text(size = 11), strip.text.y = element_text(size = 11)) +
+  theme(axis.text.x = element_text(size = 9, angle = 45, hjust = 1), axis.text.y = element_text(size = 9), axis.title.y = element_text(size = 9))
 
 
 #nMDS data---------
