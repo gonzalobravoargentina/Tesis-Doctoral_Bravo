@@ -39,8 +39,12 @@ Este repositorio contiene los códigos y los datos utilizados en la tesis doctor
 #### Archivos .CSV con los datos utilizados para este capítulo. 
 
 
+<hr>
 
-
-![Logo](https://ibiomar.conicet.gov.ar/wp-content/uploads/sites/44/2018/02/Sin-t%C3%ADtulo-1.png)
-
+<table>
+  <tr>
+    <td><img src="https://ibiomar.conicet.gov.ar/wp-content/uploads/sites/44/2018/02/Sin-t%C3%ADtulo-1.png" alt="Logo 1" width="200"></td>
+    <td><img src="https://www.unp.edu.ar/images/principal/logo.png" alt="Logo 2" width="200"></td>
+  </tr>
+</table>
 
