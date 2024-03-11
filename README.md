@@ -26,17 +26,18 @@ Este repositorio contiene los códigos y los datos utilizados en la tesis doctor
 ##### [Water_Velocity_Data_PuntaEste_TILTCURRENTMETER.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201/Data/Water_Velocity_Data_PuntaEste_TILTCURRENTMETER.csv)
 
 
-### Capítulo 2: La importancia de la orientación y la profundidad del sustrato en los protocolos de monitoreo de la biodiversidad: El caso de los arrecifes rocosos de la patagonia
-- Conjunto de datos:
+### [Capítulo 2: La importancia de la orientación y la profundidad del sustrato en los protocolos de monitoreo de la biodiversidad: El caso de los arrecifes rocosos de la patagonia](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202)
+#### Archivos .CSV con los datos utilizados para este capítulo.
 
-### Capítulo 3: Descripción de comunidades bentónicas de arrecifes rocosos del Golfo Nuevo mediante métodos convencionales y herramientas de inteligencia artificial
-- Conjunto de datos: 
+### [Capítulo 3: Descripción de comunidades bentónicas de arrecifes rocosos del Golfo Nuevo mediante métodos convencionales y herramientas de inteligencia artificial](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%203)
+#### Archivos .CSV con los datos utilizados para este capítulo.
 
-### Capítulo 4: Utilización de inteligencia artificial para describir la biodiversidad bentónica en arrecifes rocosos a lo largo de 15° de latitud en la costa patagónica
-- Conjunto de datos: 
+### [Capítulo 4: Utilización de inteligencia artificial para describir la biodiversidad bentónica en arrecifes rocosos a lo largo de 15° de latitud en la costa patagónica](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%204)
+#### Archivos .CSV con los datos utilizados para este capítulo.
 
-### Capítulo 5: Repositorio de fotografías submarinas para uso libre y guía digital educativa de invertebrados, algas y peces en una plataforma de acceso libre
-- Conjunto de datos: 
+### [Capítulo 5: Repositorio de fotografías submarinas para uso libre y guía digital educativa de invertebrados, algas y peces en una plataforma de acceso libre](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%205)
+#### Archivos .CSV con los datos utilizados para este capítulo. 
 
-Este repositorio proporciona acceso a los códigos utilizados en cada capítulo de la tesis, así como a los conjuntos de datos correspondientes.
+![Logo](https://ibiomar.conicet.gov.ar/wp-content/uploads/sites/44/2018/02/Sin-t%C3%ADtulo-1.png)
+
 
