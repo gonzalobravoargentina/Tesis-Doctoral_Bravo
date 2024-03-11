@@ -1,6 +1,6 @@
 # Tesis Doctoral: Biodiversidad bentónica de arrecifes rocosos de la costa patagónica: estado actual y análisis de herramientas de inteligencia artificial para monitoreos
 
-**Autor:** Mag. Gonzalo Bravo
+**Autor:** Mag. Gonzalo Bravo 
 **Director:** Dr. Gregorio Bigatti  
 **Co-director:** Dr. Juan Pablo Livore  
 **Universidad:** Universidad Nacional de la Patagonia San Juan Bosco
