@@ -24,9 +24,14 @@ Archivos .CSV con los datos utilizados para este capítulo.
 - [Water_Velocity_Data_Cormoranes_TILTCURRENTMETER.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201/Data/Water_Velocity_Data_Cormoranes_TILTCURRENTMETER.csv)
 - [Water_Velocity_Data_PuntaEste_TILTCURRENTMETER.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%201/Data/Water_Velocity_Data_PuntaEste_TILTCURRENTMETER.csv)
 
-
 ### [Capítulo 2: La importancia de la orientación y la profundidad del sustrato en los protocolos de monitoreo de la biodiversidad: El caso de los arrecifes rocosos de la patagonia](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202)
-#### Archivos .CSV con los datos utilizados para este capítulo.
+Archivos .CSV con los datos utilizados para este capítulo.
+- [Density_Data.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202/Data/Density_Data.csv)
+- [Metadata_Photoquadrats.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202/Data/Metadata_Photoquadrats.csv)
+- [Percent_Cover_Data_onlysessile.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202/Data/Percent_Cover_Data_onlysessile.csv)
+- [Percent_Cover_Data.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202/Data/Percent_Cover_Data.csv)
+- [Presence_Absence_Data.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%202/Data/Presence_Absence_Data.csv)
+
 
 ### [Capítulo 3: Descripción de comunidades bentónicas de arrecifes rocosos del Golfo Nuevo mediante métodos convencionales y herramientas de inteligencia artificial](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%203)
 #### Archivos .CSV con los datos utilizados para este capítulo.
