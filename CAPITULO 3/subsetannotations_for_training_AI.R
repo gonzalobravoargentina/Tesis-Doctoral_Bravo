@@ -2,7 +2,8 @@
 
 ##Data folder
 Data <- "Data"
-
+file_list <- list.files(path = "Data", pattern = "\\.csv$")
+file_list
 library(readr)
 annotations <- read_csv(file.path(Data, "annotations_GN_verticla_horizontal.csv"))#read cover data
 
