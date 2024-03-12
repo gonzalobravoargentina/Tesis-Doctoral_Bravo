@@ -233,7 +233,7 @@ ligthtempdata_pardelas <- read.csv(file.path(Data,"Ligth_Temperature_Cloud_Data_
 #Descriptive Statistics
 library(doBy)
 summaryBy(Temp + Lux  ~ Site, data = ligthtempdata_pardelas, 
-          FUN = function(x) { c(m = mean(x), s = sd(x)) } )
+          FUN = function(x) { c(m = mean(x), s = sd(x),n=length(x)) } )
 
 # covert date to POSIXct class
 library(lubridate)
@@ -256,8 +256,8 @@ ligthtempdata_inclination <- read.csv(file.path(Data,"Ligth_ReefInclination_Data
 
 #Descriptive Statistics
 library(doBy)
-summaryBy(Temp + Lux  ~ Site, data = ligthtempdata_inclination, 
-          FUN = function(x) { c(m = mean(x), s = sd(x)) } )
+summaryBy(Temp + Lux  ~ Site , data = ligthtempdata_inclination, 
+          FUN = function(x) { c(m = mean(x), s = sd(x),n=length(x)) } )
 
 # covert date to POSIXct class
 library(lubridate)
@@ -287,7 +287,7 @@ currentDATA_corm$Velocity.E..m.s. <- currentDATA_corm$Velocity.E..cm.s./100
 temperatureDATA_corm <- read.csv(file.path(Data,"Water_Temperature_Data_Cormoranes_TILTCURRENTMETER.csv"))
 
 
-#Transform time format 
+  #Transform time format 
 currentDATA_corm$Datetime <- strptime(currentDATA_corm$ISO.8601.Time,"%Y-%m-%dT%H:%M:%S")
 temperatureDATA_corm$Datetime <- strptime(temperatureDATA_corm$ISO.8601.Time,"%Y-%m-%dT%H:%M:%S")
 
