@@ -798,7 +798,7 @@ lapply(simper_deep , FUN= function(x){x$overall})
 top10_deep<-lapply(simsum_deep, `[`,1:10,)
 top20_deep<-lapply(simsum_deep, `[`,1:20,)
 
-#Abundace urchins-------------------------------------------------------------
+#Abundance sea urchins-------------------------------------------------------------
 
 #Pseudechinus.magellanicus
 library(doBy)
