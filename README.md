@@ -34,7 +34,19 @@ Archivos .CSV con los datos utilizados para este capítulo.
 
 
 ### [Capítulo 3: Descripción de comunidades bentónicas de arrecifes rocosos del Golfo Nuevo mediante métodos convencionales y herramientas de inteligencia artificial](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%203)
-#### Archivos .CSV con los datos utilizados para este capítulo.
+Archivos .CSV con los datos utilizados para este capítulo.
+- [annotations_forAI.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/annotations_forAI.csv)
+- [annotations_GN_verticla_horizontal.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/annotations_GN_verticla_horizontal.csv)
+- [annotations_HUMAN.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/annotations_HUMAN.csv)
+- [annotations_robot.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/annotations_robot.csv)
+- [checklist_GolfoNuevo.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/checklist_GolfoNuevo.csv)
+- [density_HUMAN.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/density_HUMAN.csv)
+- [labelset.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/labelset.csv)
+- [metadata_AI.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/metadata_AI.csv)
+- [metadata_HUMAN.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/metadata_HUMAN.csv)
+- [percent_covers_AI.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/percent_covers_AI.csv)
+- [percent_covers_HUMAN.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/percent_covers_HUMAN.csv)
+- [tablafotocuadrantes.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/tablafotocuadrantes.csv)
 
 ### [Capítulo 4: Utilización de inteligencia artificial para describir la biodiversidad bentónica en arrecifes rocosos a lo largo de 15° de latitud en la costa patagónica](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%204)
 #### Archivos .CSV con los datos utilizados para este capítulo.
