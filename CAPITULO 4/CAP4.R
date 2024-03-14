@@ -54,6 +54,7 @@ PQ.COVER <- subset(PQ.COVER,`Annotation status`=="Unconfirmed")
 #ANNOTATIONS----------------
 
 library(readr)
+#The file annotations.csv is in a zip file, you must decompress before using (github does not allow heavy files)
 annotations <- read_csv(file.path(Data, "annotations.csv"))
 annotationsGB <- subset(annotations, Annotator=="gonzalopatagonia"|Annotator=="Imported")
 
@@ -65,8 +66,8 @@ dfSummary <- annotationsGB %>% group_by(Label) %>%
   arrange(-nPoints) %>% 
   relocate(Label, nPoints, Percent, site)
 
-#Created a csv to be imported to CoralNet
-write.csv(dfSummary, 'tableCATAMI.csv',row.names = F)
+#Created a csv 
+#write.csv(dfSummary, 'tableCATAMI.csv',row.names = F)
 
 #PRESENCE_ABSENCE---------
 
@@ -79,9 +80,6 @@ col_end <- ncol(PQ.PRESENCE_ABSENCE)
 PQ.PRESENCE_ABSENCE[, col_start:col_end][PQ.PRESENCE_ABSENCE[, col_start:col_end] > 0] <- 1
 
 rm(col_start,col_end)
-
-
-
 
 
 #CONFUSION MATRIX--------
