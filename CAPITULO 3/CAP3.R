@@ -361,10 +361,12 @@ nMDShorizontal=metaMDS(horizontal.data[,-(1:22)],k=2,trymax=5,try = 5,distance =
 NMDS1.horizontal <-nMDShorizontal$points[,1] 
 NMDS2.horizontal <- nMDShorizontal$points[,2]
 MDS.plot_horizontal<-cbind(horizontal.data[,-(1:22)], NMDS1.horizontal, NMDS2.horizontal,horizontal.data$DataSet,horizontal.data$site) 
+
 #nMDS plot horizontal
 nMDShorizontal.plot <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$site,shape=horizontal.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal)-0.5, y=min(NMDS2.horizontal)-0.5, label=paste('Stress =',round(nMDShorizontal$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal")+ scale_color_brewer(palette="Set2",name = "Zona", labels = c("Bahia Nueva", "Bahia Piramides"))
 
-nMDShorizontal.plot_T <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$DataSet,shape=horizontal.data$DataSet))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal)-0.5, y=min(NMDS2.horizontal)-0.5, label=paste('Stress =',round(nMDShorizontal$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal - Fecha")+ scale_color_brewer(palette="Accent",name = "Fecha", labels = c("Agosto", "Diciembre"))
+#nMDS plot horizontal + tiempo
+nMDShorizontal.plot_T <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$DataSet,shape=horizontal.data$DataSet))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal)-0.5, y=min(NMDS2.horizontal)-0.5, label=paste('Stress =',round(nMDShorizontal$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal - Fecha")+ scale_color_brewer(palette="Set1",name = "Fecha", labels = c("Agosto", "Diciembre"))
 
 #Horizontal data AI
 horizontal.data_AI <- subset(PQ.COVER_AI_T1_T2,`reef area`=="horizontal")
@@ -373,6 +375,7 @@ nMDShorizontal_AI=metaMDS(horizontal.data_AI[,-(1:22)],k=2,trymax=10,try = 10,di
 NMDS1.horizontal_AI <-nMDShorizontal_AI$points[,1] 
 NMDS2.horizontal_AI <- nMDShorizontal_AI$points[,2]
 MDS.plot_AI<-cbind(horizontal.data_AI[,-(1:22)], NMDS1.horizontal_AI, NMDS2.horizontal_AI,horizontal.data_AI$site) 
+
 #nMDS plot horizontal AI
 nMDShorizontal_AI.plot <- ggplot(MDS.plot_AI, aes(NMDS1.horizontal_AI, NMDS2.horizontal_AI, color=horizontal.data_AI$site,shape=horizontal.data_AI$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "none",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal_AI)-0.5, y=min(NMDS2.horizontal_AI)-0.5, label=paste('Stress =',round(nMDShorizontal_AI$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal_IA")+ scale_color_brewer(palette="Dark2",name = "Zona", labels = c("Bahia Nueva", "Bahia Piramides"))
 
@@ -380,15 +383,14 @@ nMDShorizontal_AI.plot <- ggplot(MDS.plot_AI, aes(NMDS1.horizontal_AI, NMDS2.hor
 #vertical data
 vertical.data <- subset(PQ.COVER_T1_T2,`reef area`=="vertical")
 #nMDS calculations (no transformation + Bray)
-nMDSvertical=metaMDS(vertical.data[,-(1:22)],k=2,trymax=5,try =5,distance ="bray",autotransform = FALSE)
-
+nMDSvertical=metaMDS(vertical.data[,-(1:22)],k=2,trymax=5,try =10,distance ="bray",autotransform = FALSE)
 NMDS1.vertical <-nMDSvertical$points[,1] 
 NMDS2.vertical <- nMDSvertical$points[,2]
 MDS.plot_vertical<-cbind(vertical.data[,-(1:22)], NMDS1.vertical, NMDS2.vertical,vertical.data$site, vertical.data$DataSet) 
 #nMDS plot vertical
 nMDSvertical.plot <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$site,shape=vertical.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.vertical)-0.5, y=min(NMDS2.vertical)-0.5, label=paste('Stress =',round(nMDSvertical$stress,3)))+ggtitle("    Fotocuadrantes superficie vertical")+ scale_color_brewer(palette="Set2",name = "Reef Site", labels = c("Bahia Nueva", "Bahia Piramides")) 
 
-nMDSvertical.plot_T <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$DataSet,shape=vertical.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.vertical)-0.5, y=min(NMDS2.vertical)-0.5, label=paste('Stress =',round(nMDSvertical$stress,3)))+ggtitle("    Fotocuadrantes superficie vertical - Fecha")+ scale_color_brewer(palette="Accent",name = "Fecha", labels = c("Agosto", "Diciembre")) 
+nMDSvertical.plot_T <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$DataSet,shape=vertical.data$DataSet))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.vertical)-0.5, y=min(NMDS2.vertical)-0.5, label=paste('Stress =',round(nMDSvertical$stress,3)))+ggtitle("    Fotocuadrantes superficie vertical - Fecha")+ scale_color_brewer(palette="Set1",name = "Fecha", labels = c("Agosto", "Diciembre")) 
 
 #vertical data AI
 vertical.data_AI <- subset(PQ.COVER_AI_T1_T2,`reef area`=="vertical")

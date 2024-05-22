@@ -490,7 +490,7 @@ currentcm_corm <- as.cm(
 )
 
 summary(currentcm_corm)
-plot(currentcm_corm,which=6)
+plot(currentcm_corm,which=6,ylim(-0.4,0.4))
 
 currentcm_pest <- as.cm(
   TILD.DATA_pest$Datetime,
@@ -509,6 +509,14 @@ currentcm_pest <- as.cm(
 summary(currentcm_pest)
 plot(currentcm_pest,which=1)#u
 plot(currentcm_pest,which=2)#V
-plot(currentcm_pest,which=6)#uv+ellipse+arrow
+plot(currentcm_pest,which=6,yaxs="i",ylim = c(-0.4, 0.4))#uv+ellipse+arrow
 plot(currentcm_pest,which=9)#temperature
+
+
+
+plot(currentcm_pest,which=6)
+
+
+
+
 

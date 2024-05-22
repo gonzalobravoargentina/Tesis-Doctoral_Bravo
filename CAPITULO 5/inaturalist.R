@@ -1,6 +1,3 @@
-
-
-
 #Script para obtener observaciones de iNaturalist y realizar estadisticas
 
 # Cargar los paquetes requeridos
@@ -15,7 +12,7 @@ library(dplyr)
 ##Data folder
 Data <- "Data"
 library(readr)
-proyecto_obs  <- read_csv(file.path(Data, "observations-project.csv"))
+proyecto_obs  <- read_csv(file.path(Data, "observations-437676.csv"))
 
 ## (2) Bajar los datos desde la API del poryecto biodiversidad-submarina-de-la-costa-argentina solo funciona para 10000 observaciones
 #library(rinat)
@@ -231,23 +228,31 @@ GBIF <- unique(obs$quality_grade)
 # Filtrar y obtener las especies únicas con "research" en quality_grade
 GBIF <- subset(obs, quality_grade == "research")$taxon_species_name
 
+
+
+#Graficos de torta-----
 library(ggplot2)
 library(RColorBrewer)
 
 # Calcular la frecuencia de los nombres
-frecuencia <- table(obs$taxon_phylum_name)
+frecuencia <- table(proyecto_obs$taxon_phylum_name)
+
+especies_por_phylum <- tapply(proyecto_obs$taxon_species_name, proyecto_obs$taxon_phylum_name, function(x) length(unique(x)))
 
 # Crear un dataframe con los datos de frecuencia
 df <- data.frame(Phylum = names(frecuencia), Frecuencia = frecuencia)
 
-colnames(df) <- c("Phylum_En","Var1","Frecuencia")
+df <- data.frame(Phylum = names(especies_por_phylum), Frecuencia = especies_por_phylum)
+
+
+
 # Ordenar el dataframe por frecuencia descendente
-df <- df[order(df$Frecuencia, decreasing = TRUE), ]
+df <- df[order(df$Frecuencia.Freq, decreasing = TRUE), ]
 
 #traducir al espanol 
-df$Phylum <- c("Moluscos", "Equinodermos", "Cordados", "Cnidarios", "Artrópodos",
-               "Poríferos", "Rodofitas", "Ocrofitas", "Clorofitas", "Anélidos",
-               "Briozoos", "Platelmintos", "Braquiópodos", "Ctenóforos", "Nemertinos")
+df$Phylum <- c("Moluscos", "Cordados", "Equinodermos","Artrópodos", "Rodofitas", "Cnidarios", "Ocrofitas","Clorofitas", "Poríferos" , "Ctenóforos")
+               
+               , "Anélidos", "Briozoos", "Platelmintos", "Braquiópodos", "Nemertinos")
 
 
 
@@ -255,7 +260,7 @@ df$Phylum <- c("Moluscos", "Equinodermos", "Cordados", "Cnidarios", "Artrópodos
 colores <- colorRampPalette(colors = c("blue", "green", "orange", "red"))(length(df$Phylum))
 
 # Crear el gráfico de torta con la paleta de colores personalizada
-ggplot(df, aes(x = "", y = Frecuencia, fill = Phylum)) +
+ggplot(df, aes(x = "", y = Frecuencia.Freq, fill = Phylum)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar("y", start = 0) +
   labs(title = "Gráfico de Torta - Frecuencia por Phylum") +
@@ -266,7 +271,7 @@ ggplot(df, aes(x = "", y = Frecuencia, fill = Phylum)) +
 
 library(plotly)
 # Crear el gráfico de torta con plot_ly
-p <- plot_ly(df, labels = df$Phylum, values = df$Frecuencia, type = "pie") %>%
+p <- plot_ly(df, labels = df$Phylum, values = df$Frecuencia.Freq, type = "pie") %>%
   layout(title = "Gráfico de Torta - Frecuencia por Phylum")
 
 
@@ -275,7 +280,7 @@ library(ggplot2)
 # Datos de ejemplo
 df <- data.frame(
   Phylum = c("Moluscos", "Equinodermos", "Cordados", "Cnidarios", "Artrópodos","Poríferos","Rodofitas","Ocrofitas","Clorofitas","Anélidos","Briozoos"),
-  Frecuencia = c(21, 18, 16, 13, 10,6,5,5,2,2,1)
+  Frecuencia = c(36.3, 18, 16, 13, 10,6,5,5,2,2,1)
 )
 
 # Colores en escala de grises
