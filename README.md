@@ -49,11 +49,21 @@ Archivos .CSV con los datos utilizados para este capítulo.
 - [tablafotocuadrantes.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%203/Data/tablafotocuadrantes.csv)
 
 ### [Capítulo 4: Utilización de inteligencia artificial para describir la biodiversidad bentónica en arrecifes rocosos a lo largo de 15° de latitud en la costa patagónica](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%204)
-#### Archivos .CSV con los datos utilizados para este capítulo.
-
+Archivos .CSV con los datos utilizados para este capítulo.
+- [confusion_matrix_full_0.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/confusion_matrix_full_0.csv)
+- [confusion_matrix_func_0.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/confusion_matrix_func_0.csv)
+- [Coverdata.site.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/Coverdata.site.csv)
+- [metadata_v2.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/metadata_v2.csv)
+- [metadata.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/metadata.csv)
+- [percent_covers_v2.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/percent_covers_v2.csv)
+- [percent_covers.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/percent_covers.csv)
+- [tableCATAMI.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%204/Data/tableCATAMI.csv)
+  
 ### [Capítulo 5: Repositorio de fotografías submarinas para uso libre y guía digital educativa de invertebrados, algas y peces en una plataforma de acceso libre](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/tree/main/CAPITULO%205)
-#### Archivos .CSV con los datos utilizados para este capítulo. 
-
+Archivos .CSV con los datos utilizados para este capítulo. 
+- [observations-437676.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%205/Data/observations-437676.csv)
+- [observations-gonzalopatagonia.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%205/Data/observations-gonzalopatagonia.csv)
+- [observations-project.csv](https://github.com/gonzalobravoargentina/Tesis-Doctoral_Bravo/blob/main/CAPITULO%205/Data/observations-project.csv)
 
 <hr>
 
