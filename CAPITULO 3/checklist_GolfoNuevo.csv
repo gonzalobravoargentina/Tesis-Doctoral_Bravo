@@ -1,83 +1,81 @@
-"","TAXA","Bahia Nueva","Bahia Piramides"
-"1","Aequipecten tehuelchus",2,0
-"2","Anthothoe chilensis",18,2
-"3","Aplidium sp.",3,0
-"5","Ascidians: Unstalked: Colonial",20,59
-"7","Ascidiella aspersa",143,43
-"8","Asterocarpa humilis",87,5
-"9","Aulacomya atra",490,160
-"10","Austromegabalanus psittacus",0,1
-"11","Balanus glandula",0,1
-"12","Boring Bivalves",125,210
-"13","Bryozoa: hard: branching",4,2
-"14","Bryozoa: hard: encrusting",6,39
-"17","Calcareous sponge",4,2
-"18","Ciona robusta",16,1
-"19","Clathria sp.",0,38
-"20","Cliona sp.",2,8
-"21","Cnidaria: Hydroids",15,11
-"22","Corella eumyota",21,0
-"23","Corynactis carnea",361,261
-"24","Darwinella cf. rosacea",2,15
-"25","Diplosoma listerianum",16,43
-"26","Halcurias sp.",2,3
-"27","Lissoclinum fragile",19,61
-"28","Magellania venosa",0,8
-"29","Metridium senile",29,2
-"30","Mytilus edulis",1,1
-"31","Myxicola",0,5
-"32","Parabunodactis imperfecta",6,1
-"33","Paramolgula gregaria",1,0
-"34","Sabellidae",0,1
-"35","Sponge: Encrusting",154,122
-"36","Sponge: Massive",64,41
-"37","Sponge: massive violet",27,14
-"38","Sponges: Cup-likes: Tubes and chimneys",6,22
-"39","Sponges: Erect forms:  Branching",4,5
-"40","Terebellidae",48,115
-"42","Worms: Polychaetes: Tube worms",43,9
-"43","Shell/ Shell Hash",74,11
-"44","Substrate: Consolidated (hard)",623,331
-"46","Asperococcus ensiformis",5,0
-"47","Codium vermilara/fragile",208,74
-"48","Colpomenia sinuosa",18,1
-"49","Corallina officinalis (substratum)",0,8
-"50","Dictyota dichotoma",816,273
-"51","Leathesia marina",0,1
-"52","Lomentaria clavellosa",4,18
-"53","Macroalgae: Encrusting: brown",5,23
-"54","Macroalgae:Encrusting:Red:Calcareous:Crustose",822,379
-"55","Macroalgae: Filamentous / filiform : green",4,4
-"56","Macroalgae: Filamentous / filiform : red",553,438
-"57","Macroalgae: Sheet-like / membraneous: red",147,417
-"58","Scytosiphon lomentaria",0,1
-"59","Ulva",444,80
-"60","Undaria pinnatifida",207,69
-"61","Pseudechinus magellanicus",11,26
-"62","Tegula patagonica",786,162
-"63","Leucippa pentagona",10,8
-"64","Arbacia dufresnii",667,197
-"66","Pez",11,2
-"67","Clinidio",3,0
-"68","Helcogrammoides cunninghami",75,29
-"71","Pilumnoides hassleri",0,1
-"72","Pachycheles chubutensis",1,1
-"73","Collodes rostratus",0,1
-"74","Doris fontainii",9,2
-"75","Diaulula punctuolata",6,4
-"76","Allostichaster capensis",110,4
+"","TAXA","Bahia Nueva","Bahia Piramides","Bahia Nueva Relativa (%)","Bahia Piramides Relativa (%)"
+"1","Aequipecten tehuelchus",2,0,0.22883295194508,0
+"2","Anthothoe chilensis",18,2,2.05949656750572,0.433839479392625
+"3","Aplidium sp.",3,0,0.34324942791762,0
+"5","Ascidians: Unstalked: Colonial",20,59,2.2883295194508,12.7982646420824
+"7","Ascidiella aspersa",143,43,16.3615560640732,9.32754880694143
+"8","Asterocarpa humilis",87,5,9.95423340961098,1.08459869848156
+"9","Aulacomya atra",490,160,56.0640732265446,34.70715835141
+"10","Austromegabalanus psittacus",0,1,0,0.216919739696312
+"11","Balanus glandula",0,1,0,0.216919739696312
+"12","Boring Bivalves",125,210,14.3020594965675,45.5531453362256
+"13","Bryozoa: hard: branching",4,2,0.45766590389016,0.433839479392625
+"14","Bryozoa: hard: encrusting",6,39,0.68649885583524,8.45986984815618
+"17","Calcareous sponge",4,2,0.45766590389016,0.433839479392625
+"18","Ciona robusta",16,1,1.83066361556064,0.216919739696312
+"19","Clathria sp.",0,38,0,8.24295010845987
+"20","Cliona sp.",2,8,0.22883295194508,1.7353579175705
+"21","Cnidaria: Hydroids",15,11,1.7162471395881,2.38611713665944
+"22","Corella eumyota",21,0,2.40274599542334,0
+"23","Corynactis carnea",361,261,41.304347826087,56.6160520607375
+"24","Darwinella cf. rosacea",2,15,0.22883295194508,3.25379609544469
+"25","Diplosoma listerianum",16,43,1.83066361556064,9.32754880694143
+"26","Halcurias sp.",2,3,0.22883295194508,0.650759219088937
+"27","Lissoclinum fragile",19,61,2.17391304347826,13.2321041214751
+"28","Magellania venosa",0,8,0,1.7353579175705
+"29","Metridium senile",29,2,3.31807780320366,0.433839479392625
+"30","Mytilus edulis",1,1,0.11441647597254,0.216919739696312
+"31","Myxicola",0,5,0,1.08459869848156
+"32","Parabunodactis imperfecta",6,1,0.68649885583524,0.216919739696312
+"33","Paramolgula gregaria",1,0,0.11441647597254,0
+"34","Sabellidae",0,1,0,0.216919739696312
+"35","Sponge: Encrusting",154,122,17.6201372997712,26.4642082429501
+"36","Sponge: Massive",64,41,7.32265446224256,8.89370932754881
+"37","Sponge: massive violet",27,14,3.08924485125858,3.03687635574837
+"38","Sponges: Cup-likes: Tubes and chimneys",6,22,0.68649885583524,4.77223427331887
+"39","Sponges: Erect forms:  Branching",4,5,0.45766590389016,1.08459869848156
+"40","Terebellidae",48,115,5.49199084668192,24.9457700650759
+"42","Worms: Polychaetes: Tube worms",43,9,4.91990846681922,1.95227765726681
+"46","Asperococcus ensiformis",5,0,0.5720823798627,0
+"47","Codium vermilara/fragile",208,74,23.7986270022883,16.0520607375271
+"48","Colpomenia sinuosa",18,1,2.05949656750572,0.216919739696312
+"49","Corallina officinalis (substratum)",0,8,0,1.7353579175705
+"50","Dictyota dichotoma",816,273,93.3638443935927,59.2190889370933
+"51","Leathesia marina",0,1,0,0.216919739696312
+"52","Lomentaria clavellosa",4,18,0.45766590389016,3.90455531453362
+"53","Macroalgae: Encrusting: brown",5,23,0.5720823798627,4.98915401301518
+"54","Macroalgae:Encrusting:Red:Calcareous:Crustose",822,379,94.0503432494279,82.2125813449024
+"55","Macroalgae: Filamentous / filiform : green",4,4,0.45766590389016,0.86767895878525
+"56","Macroalgae: Filamentous / filiform : red",553,438,63.2723112128146,95.0108459869848
+"57","Macroalgae: Sheet-like / membraneous: red",147,417,16.8192219679634,90.4555314533623
+"58","Scytosiphon lomentaria",0,1,0,0.216919739696312
+"59","Ulva",444,80,50.8009153318078,17.353579175705
+"60","Undaria pinnatifida",207,69,23.6842105263158,14.9674620390456
+"61","Pseudechinus magellanicus",11,26,1.25858123569794,5.63991323210412
+"62","Tegula patagonica",786,162,89.9313501144165,35.1409978308026
+"63","Leucippa pentagona",10,8,1.1441647597254,1.7353579175705
+"64","Arbacia dufresnii",667,197,76.3157894736842,42.7331887201735
+"66","Pez",11,2,1.25858123569794,0.433839479392625
+"67","Clinidio",3,0,0.34324942791762,0
+"68","Helcogrammoides cunninghami",75,29,8.5812356979405,6.29067245119306
+"71","Pilumnoides hassleri",0,1,0,0.216919739696312
+"72","Pachycheles chubutensis",1,1,0.11441647597254,0.216919739696312
+"73","Collodes rostratus",0,1,0,0.216919739696312
+"74","Doris fontainii",9,2,1.02974828375286,0.433839479392625
+"75","Diaulula punctuolata",6,4,0.68649885583524,0.86767895878525
+"76","Allostichaster capensis",110,4,12.5858123569794,0.86767895878525
 "78","
-Fissurella patagonica",7,1
-"80","Cosmasterias lurida",7,0
-"81","Sebastes oculatus",0,3
-"83","Cycethra verrucosa",6,5
-"84","Pleurobranchaea maculata",0,5
-"86","Ohioplocus januarii",2,1
-"87","Odontaster penicillatus",6,3
-"88","Calliostoma",0,1
-"91","Trophon geversianus",88,0
-"92","Fissurella radiosa",11,0
-"93","Anasterias minuta",8,0
-"94","Geitodoris patagonica",0,3
-"95","Quiton",0,1
-"96","Tyrinna delicata",1,1
+Fissurella patagonica",7,1,0.80091533180778,0.216919739696312
+"80","Cosmasterias lurida",7,0,0.80091533180778,0
+"81","Sebastes oculatus",0,3,0,0.650759219088937
+"83","Cycethra verrucosa",6,5,0.68649885583524,1.08459869848156
+"84","Pleurobranchaea maculata",0,5,0,1.08459869848156
+"86","Ohioplocus januarii",2,1,0.22883295194508,0.216919739696312
+"87","Odontaster penicillatus",6,3,0.68649885583524,0.650759219088937
+"88","Calliostoma",0,1,0,0.216919739696312
+"91","Trophon geversianus",88,0,10.0686498855835,0
+"92","Fissurella radiosa",11,0,1.25858123569794,0
+"93","Anasterias minuta",8,0,0.91533180778032,0
+"94","Geitodoris patagonica",0,3,0,0.650759219088937
+"95","Quiton",0,1,0,0.216919739696312
+"96","Tyrinna delicata",1,1,0.11441647597254,0.216919739696312

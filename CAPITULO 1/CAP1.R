@@ -20,6 +20,10 @@ RLS_GN <- subset(RLS_GN, reef.name=="Colombo" |reef.name=="Pafer"|reef.name=="PN
 
 RLS_GN$study <- "RLS"
 
+library(dbplyr)
+# Calcular el promedio de 'Total' por 'Site' y 'Block' usando aggregate
+Density.data.RLS <- aggregate(Density ~ Taxon + Site , data = RLS_GN, FUN = mean)
+Density.data.RLS$study <- "RLS"
 
 #Read cryptic fish data RLS-----
 RLS_GN_Fish <- read.csv(file.path(Data,"Reef_Life_Survey_(RLS)#_Cryptobenthic_fish_abundance_RLS.csv"))
@@ -36,7 +40,7 @@ colnames(RLS_GN_Fish)[25] <- "Taxon"
 
 
 library(doBy)
-RLS_GN_Fish <- summaryBy(Density  ~ Taxon +reef.name,   data =RLS_GN_Fish, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x))) })
+RLS_GN_Fish <- summaryBy(Density  ~ Taxon +reef.name +Block,   data =RLS_GN_Fish, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x))) })
 
 RLS_GN_Fish <- summaryBy(Density.mean  ~ Taxon,   data =RLS_GN_Fish, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x))) })
 
@@ -63,20 +67,22 @@ Density.data.Bravo <- summaryBy(Density  ~ Taxon + reef.name,   data =Density.da
 
 colnames(Density.data.Bravo)[3] <- "Density"
 Density.data.Bravo$study <- "Bravo"
+colnames(Density.data.Bravo) <- c("Taxon","Site","Density","study")
+
 
 #merge both data frames 
-Densitydata.RLSvsBRAVO <- merge(Density.data.Bravo, RLS_GN, by=c("Taxon","reef.name","Density","study"), all = TRUE)
+Densitydata.RLSvsBRAVO <- merge(Density.data.Bravo, Density.data.RLS, by=c("Taxon","Site","Density","study"), all = TRUE)
 
 
 #calculate mean density 
 library(doBy)
-Density.Data.comparison <- summaryBy(Density  ~ Taxon + study,   data =Densitydata.RLSvsBRAVO, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x))) })
+Density.Data.comparison <- summaryBy(Density  ~ Taxon + study,   data =Densitydata.RLSvsBRAVO, FUN = function(x) { c(mean = mean(x), n=length(x),SD=sd(x),SE = sqrt(var(x)/length(x))) })
 
 #write.csv(Density.Data.comparison, 'Density_Data_BRAVO_RLS.csv',row.names = F)
 
 
 library(doBy)
-densitybyREEF.RLS <- summaryBy(Density  ~ Taxon + reef.name,   data =RLS_GN, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x))) })
+densitybyREEF.RLS <- summaryBy(Density  ~ Taxon + reef.name,   data =RLS_GN, FUN = function(x) { c(mean = mean(x), SD=sd(x),n=length(x),SE = sqrt(var(x)/length(x))) })
 
 library(doBy)
 densitybyREEF.Bravo <- summaryBy(Density  ~ Taxon +reef.name,   data =Density.data.Bravo, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x))) })

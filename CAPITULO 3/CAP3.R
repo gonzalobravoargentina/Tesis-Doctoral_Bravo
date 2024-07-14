@@ -254,6 +254,7 @@ colnames(PQ.PRESENCE_ABSENCE_T1_T2_long)[23] <- "TAXA"
 colnames(PQ.PRESENCE_ABSENCE_T1_T2_long)[24] <- "Presence"
 colnames(PQ.PRESENCE_ABSENCE_T1_T2_long)[7] <- "reefarea"
 
+
 library(reshape2)
 # Selecciona las columnas relevantes
 df_selected <- PQ.PRESENCE_ABSENCE_T1_T2_long[, c("site", "TAXA", "Presence")]
@@ -267,6 +268,18 @@ checklist[is.na(checklist)] <- 0
 #elimino aquellas especies que no estan presentes en ninguna de las dos zonas
 checklist <- checklist[!(checklist$`Bahia Nueva` == 0 & checklist$`Bahia Piramides` == 0), ]
 
+#elimino typos de sustratos
+checklist <- subset(checklist, TAXA!="Substrate: Consolidated (hard)")
+checklist <- subset(checklist, TAXA!="Shell/ Shell Hash")
+
+# Sumar los valores totales para cada sitio
+# table(PQ.PRESENCE_ABSENCE_T1_T2$site)
+total_bahia_nueva <- 874
+total_bahia_piramides <- 461
+
+# Calcular la frecuencia relativa y agregar dos nuevas columnas
+checklist$`Bahia Nueva Relativa (%)` <- (checklist$`Bahia Nueva` / total_bahia_nueva) * 100
+checklist$`Bahia Piramides Relativa (%)` <- (checklist$`Bahia Piramides` / total_bahia_piramides) * 100
 
 rm(df_selected)
 
