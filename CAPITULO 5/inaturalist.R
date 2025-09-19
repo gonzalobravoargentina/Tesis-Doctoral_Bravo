@@ -109,7 +109,7 @@ resultados <- left_join(resultados, obs_usuario, by = "scientific_name")
 #Para obtener el data frame completo del usuario sin utilizar el API, bajamos de inaturalist el archivo csv
 library(readr)
 obs <- read_csv(file.path(Data,"observations-gonzalopatagonia.csv"))
-
+obs <- read_csv(file.path(Data,"observations-gonzalopatagonia_2024.csv"))
 #Sacar observaciones que no sean de Argentina
 obs <- obs[obs$latitude <= -37, ]
 
@@ -198,8 +198,8 @@ leaflet(obs,options = leafletOptions(
     fillColor = 'red',
     radius = 2,
     fillOpacity = 0.5,
-    stroke = T )%>% addSimpleGraticule(interval = 8)
-
+    stroke = T )
+#%>% addSimpleGraticule(interval = 8)
 
 leaflet(obs,options = leafletOptions(
   attributionControl=FALSE,zoomControl = FALSE))%>%# add different provider tiles
@@ -214,7 +214,8 @@ leaflet(obs,options = leafletOptions(
     fillColor = 'red',
     radius = 4,
     fillOpacity = 0.5,
-    stroke = T,clusterOptions = markerClusterOptions())%>% addSimpleGraticule(interval =10)
+    stroke = T,clusterOptions = markerClusterOptions())
+
 
 
 

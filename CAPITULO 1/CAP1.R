@@ -525,4 +525,162 @@ plot(currentcm_pest,which=6)
 
 
 
+#Tabla BECASSES----
 
+library(ggplot2)
+library(tidyr)
+
+# Crear el dataframe con los datos de la tabla
+datos <- data.frame(
+  Estudio = c(
+    "Santelices & Ojeda 1984", "Vanella et al. 2007", "Cardenas & Montiel 2015", 
+    "Friedlander et al. 2018", "Friedlander et al. 2020", "Friedlander et al. 2021", 
+    "Beaton et al. 2020", "Bravo et al. 2023"
+  ),
+  Poríferos = c(0, 0, 5, 13, 20, 19, 19, 4),
+  Cnidarios = c(0, 0, 5, 12, 14, 20, 11, 14),
+  Anélidos = c(0, 0, 3, 2, 4, 6, 8, 7),
+  Moluscos = c(0, 0, 3, 31, 33, 43, 31, 40),
+  Artrópodos = c(0, 0, 2, 15, 14, 18, 9, 13),
+  Briozoos = c(0, 0, 9, 8, 10, 13, 2, 5),
+  Equinodermos = c(0, 0, 2, 20, 28, 32, 21, 27),
+  Tunicados = c(0, 0, 6, 11, 14, 19, 13, 10),
+  Otros_invertebrados = c(0, 0, 1, 2, 1, 4, 2, 1),
+  Peces = c(0, 11, 0, 14, 21, 19, 0, 7),
+  Algas = c(39, 0, 31, 2, 3, 2, 2, 32),
+  TOTAL = c(39, 11, 67, 130, 162, 195, 118, 160)
+)
+
+# Filtrar el dataframe para eliminar los estudios de "Vanella et al. 2007"
+datos <- datos[!datos$Estudio %in% c("Vanella et al. 2007", "Santelices & Ojeda 1984"), ]
+
+
+
+
+
+# Ordenar los estudios por el total de especies detectadas
+datos$Estudio <- factor(datos$Estudio, levels = datos$Estudio[order(datos$TOTAL, decreasing = TRUE)])
+
+# Convertir el dataframe a formato largo para ggplot2
+datos_largos <- pivot_longer(datos, cols = -c(Estudio, TOTAL), names_to = "Categoria", values_to = "Cantidad")
+
+# Crear el gráfico de barras apiladas con la línea de TOTAL
+ggplot() +
+  geom_bar(data = datos_largos, aes(x = Estudio, y = Cantidad, fill = Categoria), stat = "identity") +
+  geom_line(data = datos, aes(x = Estudio, y = TOTAL, group = 1), color = "black", size = 1) +
+  geom_point(data = datos, aes(x = Estudio, y = TOTAL), color = "black", size = 2) +
+  theme_minimal() +
+  labs(title = "Número de especies detectadas por estudio",
+       x = "Estudio",
+       y = "Número de especies",
+       fill = "Categoría") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_brewer(palette = "Set3") +
+  scale_x_discrete(limits = rev(levels(datos$Estudio)))  # Revertir el orden para mayor a menor
+
+# Crear el gráfico de barras apiladas con la línea de TOTAL
+ggplot() +
+  geom_line(data = datos, aes(x = Estudio, y = TOTAL, group = 1), color = "black", size = 1) +
+  geom_point(data = datos, aes(x = Estudio, y = TOTAL), color = "black", size = 2) +
+  theme_minimal() +
+  labs(x = "Estudio",
+       y = "Número de especies",
+       fill = "Categoría") +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 20),
+    axis.text.y = element_text(size = 20),
+    axis.title.x = element_text(size = 20),
+    axis.title.y = element_text(size = 20),
+    legend.title = element_text(size = 20),
+    legend.text = element_text(size = 20),
+    plot.title = element_text(size = 20)
+  ) +
+  scale_fill_brewer(palette = "Set3") +
+  scale_x_discrete(limits = rev(levels(datos$Estudio)))  # Revertir el orden para mayor a menor
+
+
+
+
+
+# Cargamos las bibliotecas necesarias
+library(ggplot2)
+library(ggmap)
+library(dplyr)
+
+# Creamos el dataframe con las coordenadas
+lugares <- data.frame(
+  Estudio = c("Santelices & Ojeda 1984", 
+              "Vanella et al. 2007", 
+              "Cardenas & Montiel 2015", 
+              "Friedlander et al. 2018", 
+              "Friedlander et al. 2018",
+              "Friedlander et al. 2018",
+              "Friedlander et al. 2020", 
+              "Friedlander et al. 2021",
+              "Beaton et al. 2020", 
+              "Bravo et al. 2023"),
+  Area = c("Puerto Toro, Isla Navarino, Chile", 
+           "Isla Despard, Beagle Channel, Argentina",
+           "Punta Santa Ana, Chile",
+           "Canal Barbara, Chile",
+           "Islas Diego Ramírez, Chile",
+           "Cabo de Hornos, Chile",
+           "Península Mitre e Isla de los Estados, Argentina", 
+           "Reserva Kawésqar, Chile",
+           "Islas Malvinas, Argentina", 
+           "Islas Bécasses, Argentina"),
+  Latitud = c(-55.0813, 
+              -54.8697,
+              -53.6342, 
+              -53.8493,
+              -56.4976,
+              -55.7186,
+              -54.7500, 
+              -51.9709, 
+              -51.6278, 
+              -54.9504),
+  Longitud = c(-67.0731, 
+               -68.2034,
+               -70.9106, 
+               -72.2047,
+               -68.7127,
+               -67.2058, 
+               -64.2500, 
+               -72.919, 
+               -57.7480, 
+               -67.0283)
+)
+
+
+# Filtrar el dataframe para eliminar los estudios de "Vanella et al. 2007"
+lugares <- lugares[!lugares$Estudio %in% c("Vanella et al. 2007", "Santelices & Ojeda 1984"), ]
+# Verificamos el dataframe
+print(lugares)
+
+# Creamos el mapa
+world_map <- map_data("world")
+
+ggplot() +
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), fill = "gray90", color = "gray50") +
+  geom_point(data = lugares, aes(x = Longitud, y = Latitud, color = Estudio), size = 3) +
+  theme_minimal() +
+  ggtitle("Lugares de Muestreo") +
+  theme(legend.position = "bottom") +
+  coord_fixed(ratio = 1.3) +
+  xlim(-75, -55) +
+  ylim(-57, -50)
+
+# Crear el gráfico
+ggplot() +
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), fill = "gray90", color = "gray50") +
+  geom_point(data = lugares, aes(x = Longitud, y = Latitud, color = Estudio), size = 3) +
+  theme_minimal() +
+  ggtitle("Lugares de Muestreo") +
+  theme(
+    legend.position = "bottom",
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  ) +
+  coord_fixed(ratio = 1.3) +
+  xlim(-75, -55) +
+  ylim(-57, -50)

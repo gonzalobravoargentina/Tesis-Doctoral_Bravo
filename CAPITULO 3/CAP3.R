@@ -10,6 +10,7 @@ library(readr)
 library(dplyr)
 library(lubridate)
 library(tidyr)
+library(reshape2)
 
 # Suppress summaries info
 options(dplyr.summarise.inform = FALSE)
@@ -189,6 +190,9 @@ library(dplyr)
 PQ.DENSITY <- PQ.DENSITY %>%
   select(-Notas)
 
+# Sumar todos los valores de las columnas 20 a 42
+total_sum <- sum(unlist(PQ.DENSITY[, 20:42]))
+
 library(dplyr)
 library(lubridate)
 # Add a column named "DataSet" with the T1 for month 07/08 of 2019 and T2 for 12 2019
@@ -324,11 +328,11 @@ ggplot(data_to_plot, aes(x = site, y = `Tegula patagonica`)) +
   theme_minimal()
 
 #GLM
-arbacia = glm(`Tegula patagonica`~ site*DataSet,family = poisson, data = data_to_plot)
-summary(arbacia)
+tegula = glm(`Tegula patagonica`~ site*DataSet,family = poisson, data = data_to_plot)
+summary(tegula)
 
 
-#% COVER PLOTS---------
+#% COVER PLOTS--------- 
 
 #Create long type dataframe 
 PQ.COVER_T1_T2_long = melt(PQ.COVER_T1_T2, id.vars = 1:22, measure.vars = 23:ncol(PQ.COVER_T1_T2), na.rm = T)
@@ -343,7 +347,9 @@ Coverdata <- summaryBy(cover ~ TAXA + site + DataSet+reefarea,data=PQ.COVER_T1_T
 
 # Dictyota dichotoma, macroalgas filamentosas rojas, macroalgas calcáreas incrustantes, Corynactis carnea, Substrato, macroalgas laminares rojas, Ulva y Aulacomya atra
 # 
-Coverdata2 <- subset(Coverdata,TAXA=="Dictyota dichotoma"|TAXA=="Macroalgae: Filamentous / filiform : red"|TAXA=="Macroalgae:Encrusting:Red:Calcareous:Crustose"|TAXA=="Corynactis carnea"|TAXA=="Substrate: Consolidated (hard)"|TAXA=="Macroalgae: Sheet-like / membraneous: red"|TAXA=="Ulva"|TAXA=="Aulacomya atra")
+Coverdata2 <- subset(Coverdata,TAXA=="Dictyota dichotoma"|TAXA=="Macroalgae: Filamentous / filiform : red"|TAXA=="Macroalgae:Encrusting:Red:Calcareous:Crustose"|TAXA=="Macroalgae: Sheet-like / membraneous: red"|TAXA=="Ulva"|TAXA=="Aulacomya atra")
+
+#TAXA=="Substrate: Consolidated (hard) |TAXA=="Corynactis carnea"
 
 Coverdata2$TAXA <- gsub("\\([^)]+\\)", "", Coverdata2$TAXA)
 Coverdata2$TAXA <- gsub(" ", "", Coverdata2$TAXA)
@@ -352,8 +358,8 @@ Coverdata2$TAXA <- gsub(" ", "", Coverdata2$TAXA)
 Coverdata2$TAXA <- gsub("Macroalgae:Encrusting:Red:Calcareous:Crustose", "Calcáreas incrustantes", Coverdata2$TAXA)
 Coverdata2$TAXA <- gsub("Macroalgae:Filamentous/filiform:red", "Filamentosas Rojas", Coverdata2$TAXA)
 Coverdata2$TAXA <- gsub("Macroalgae:Sheet-like/membraneous:red", "Laminares rojas", Coverdata2$TAXA)
-Coverdata2$TAXA <- gsub("Substrate:Consolidated", "Sustrato", Coverdata2$TAXA)
-Coverdata2$TAXA <- gsub("Corynactiscarnea", "Corynactis carnea", Coverdata2$TAXA)
+#Coverdata2$TAXA <- gsub("Substrate:Consolidated", "Sustrato", Coverdata2$TAXA)
+#Coverdata2$TAXA <- gsub("Corynactiscarnea", "Corynactis carnea", Coverdata2$TAXA)
 Coverdata2$TAXA <- gsub("Aulacomyaatra", "Aulacomya atra", Coverdata2$TAXA)
 Coverdata2$TAXA <- gsub("Dictyotadichotoma", "Dictyota dichotoma", Coverdata2$TAXA)
 
@@ -364,9 +370,108 @@ Coverdata2$DataSet <- gsub("T2", "Diciembre", Coverdata2$DataSet)
 ggplot(Coverdata2,aes(x=reefarea,y=cover.mean,fill=DataSet)) + geom_bar(alpha=0.7,stat="identity",color="black",position=position_dodge()) + scale_color_grey() + geom_errorbar(aes(ymin=cover.mean-cover.SE, ymax=cover.mean+cover.SE), width=.2,position=position_dodge(.9)) + theme_bw() + scale_y_continuous(limits = c(0,100))+ labs(fill = "Fecha",x = "", y = "Cobertura (%)", title = "")+ theme(legend.position = "bottom",panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank()) + scale_fill_brewer(palette="Set2")+ facet_grid(site~TAXA)+theme(strip.text.x = element_text(size = 12),strip.text.y = element_text(size = 12))
 
 
+ggplot(Coverdata2, aes(x = reefarea, y = cover.mean, fill = DataSet)) +
+  geom_bar(alpha = 0.7, stat = "identity", color = "black", position = position_dodge()) +
+  geom_errorbar(aes(ymin = cover.mean - cover.SE, ymax = cover.mean + cover.SE), 
+                width = .2, position = position_dodge(.9)) +
+  theme_bw() +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(fill = "Fecha", x = "", y = "Cobertura (%)", title = "") +
+  theme(
+    legend.position = "bottom",
+    legend.text = element_text(size = 14),  # Tamaño del texto de la leyenda
+    legend.title = element_text(size = 14),  # Tamaño del texto del título de la leyenda
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 12)
+  ) +
+  scale_fill_grey(start = 0.3, end = 0.7) + # Ajusta el rango de gris claro a oscuro
+  facet_grid(site ~ TAXA)
+
+
+# Convertir TAXA a factor y revertir el orden de los niveles
+Coverdata2$site <- as.factor(Coverdata2$site)
+Coverdata2$site <- factor(Coverdata2$site, levels = rev(levels(Coverdata2$site)))
+
+ggplot(Coverdata2, aes(x = reefarea, y = cover.mean, fill = DataSet)) +
+  geom_bar(alpha = 0.7, stat = "identity", color = "black", position = position_dodge()) +
+  geom_errorbar(aes(ymin = cover.mean - cover.SE, ymax = cover.mean + cover.SE), 
+                width = .2, position = position_dodge(.9)) +
+  theme_bw() +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(fill = "Fecha", x = "", y = "Cobertura (%)", title = "") +
+  theme(
+    legend.position = "bottom",
+    legend.text = element_text(size = 14),  # Tamaño del texto de la leyenda
+    legend.title = element_text(size = 14),  # Tamaño del texto del título de la leyenda
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    strip.text.x = element_text(size = 15),
+    strip.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, angle = 45, hjust = 1),
+    axis.text.y = element_text(size = 12)
+  ) +
+  scale_fill_grey(start = 0.3, end = 0.7) + # Ajusta el rango de gris claro a oscuro
+  facet_grid(site ~ TAXA)
+
+
+
+
+#COVER IA vs HUMAN 
+
+# Eliminar la fila con Name "IMG_1578_C2.jpg" de PQ.COVER_T1_T2
+PQ.COVER_T1_T2 <- PQ.COVER_T1_T2[PQ.COVER_T1_T2$Name != "IMG_1578_C2.jpg", ]
+# Eliminar las filas con Names "IMG_1859_C2.jpg" y "IMG_9926_C2.jpg" de PQ.COVER_AI_T1_T2
+PQ.COVER_AI_T1_T2 <- PQ.COVER_AI_T1_T2[!PQ.COVER_AI_T1_T2$Name %in% c("IMG_1859_C2.jpg", "IMG_9926_C2.jpg"), ]
+
+
+# Unir los data frames por la columna 'Name'
+combined_df <- merge(PQ.COVER_T1_T2, PQ.COVER_AI_T1_T2, by = "Name", all = TRUE, suffixes = c(".human",".IA"))
+names(combined_df)
+
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# Selecciona las columnas relevantes del data frame combined_df
+selected_columns <- c(
+  "Dictyota dichotoma.IA", "Dictyota dichotoma.human",
+  "Macroalgae: Filamentous / filiform : red.IA", "Macroalgae: Filamentous / filiform : red.human",
+  "Macroalgae:Encrusting:Red:Calcareous:Crustose.IA", "Macroalgae:Encrusting:Red:Calcareous:Crustose.human",
+  "Substrate: Consolidated (hard).IA", "Substrate: Consolidated (hard).human",
+  "Macroalgae: Sheet-like / membraneous: red.IA", "Macroalgae: Sheet-like / membraneous: red.human",
+  "Ulva.IA", "Ulva.human",
+  "Aulacomya atra.IA", "Aulacomya atra.human",
+  "site.human" # Incluye la columna de región
+)
+
+# Filtrar columnas relevantes y añadir la columna de región
+plot_data <- combined_df %>%
+  select(all_of(selected_columns)) %>%
+  pivot_longer(cols = -site.human,  # No incluir site.human en el pivot
+               names_to = c("Species", "Method"), 
+               names_sep = "\\.") %>%
+  mutate(Species = factor(Species, levels = unique(Species)))
+
+# Crear el boxplot con facetas para la región
+ggplot(plot_data, aes(x = Species, y = value, fill = Method)) +
+  geom_boxplot() +
+  facet_wrap(~ site.human, scales = "free_y") + # Facetas por región
+  labs(title = "Distribución de Cobertura por IA vs Humano",
+       x = "Especie",
+       y = "Cobertura",
+       fill = "Método") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 #nMDS---------
-
+table(PQ.COVER_T1_T2$`reef area`)
 #Horizontal data
 horizontal.data <- subset(PQ.COVER_T1_T2,`reef area`=="horizontal")
 #nMDS calculations (no transformation + Bray)
@@ -379,7 +484,7 @@ MDS.plot_horizontal<-cbind(horizontal.data[,-(1:22)], NMDS1.horizontal, NMDS2.ho
 nMDShorizontal.plot <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$site,shape=horizontal.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal)-0.5, y=min(NMDS2.horizontal)-0.5, label=paste('Stress =',round(nMDShorizontal$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal")+ scale_color_brewer(palette="Set2",name = "Zona", labels = c("Bahia Nueva", "Bahia Piramides"))
 
 #nMDS plot horizontal + tiempo
-nMDShorizontal.plot_T <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$DataSet,shape=horizontal.data$DataSet))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal)-0.5, y=min(NMDS2.horizontal)-0.5, label=paste('Stress =',round(nMDShorizontal$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal - Fecha")+ scale_color_brewer(palette="Set1",name = "Fecha", labels = c("Agosto", "Diciembre"))
+nMDShorizontal.plot_T <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$DataSet,shape=horizontal.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.horizontal)-0.5, y=min(NMDS2.horizontal)-0.5, label=paste('Stress =',round(nMDShorizontal$stress,3)))+ggtitle("    Fotocuadrantes superficie horizontal - Fecha")+ scale_color_brewer(palette="Set1",name = "Fecha", labels = c("Agosto", "Diciembre"))
 
 #Horizontal data AI
 horizontal.data_AI <- subset(PQ.COVER_AI_T1_T2,`reef area`=="horizontal")
@@ -403,7 +508,7 @@ MDS.plot_vertical<-cbind(vertical.data[,-(1:22)], NMDS1.vertical, NMDS2.vertical
 #nMDS plot vertical
 nMDSvertical.plot <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$site,shape=vertical.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.vertical)-0.5, y=min(NMDS2.vertical)-0.5, label=paste('Stress =',round(nMDSvertical$stress,3)))+ggtitle("    Fotocuadrantes superficie vertical")+ scale_color_brewer(palette="Set2",name = "Reef Site", labels = c("Bahia Nueva", "Bahia Piramides")) 
 
-nMDSvertical.plot_T <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$DataSet,shape=vertical.data$DataSet))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.vertical)-0.5, y=min(NMDS2.vertical)-0.5, label=paste('Stress =',round(nMDSvertical$stress,3)))+ggtitle("    Fotocuadrantes superficie vertical - Fecha")+ scale_color_brewer(palette="Set1",name = "Fecha", labels = c("Agosto", "Diciembre")) 
+nMDSvertical.plot_T <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$DataSet,shape=vertical.data$site))+geom_point(position=position_jitter(.1))+stat_ellipse(type='t',size =1) +theme_bw() + theme(legend.position = "bottom",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1.vertical)-0.5, y=min(NMDS2.vertical)-0.5, label=paste('Stress =',round(nMDSvertical$stress,3)))+ggtitle("    Fotocuadrantes superficie vertical - Fecha")+ scale_color_brewer(palette="Set1",name = "Fecha", labels = c("Agosto", "Diciembre")) 
 
 #vertical data AI
 vertical.data_AI <- subset(PQ.COVER_AI_T1_T2,`reef area`=="vertical")
@@ -509,6 +614,8 @@ adonis2(log(df_muestras_seleccionadas_V[,-(1:22)]+1) ~ df_muestras_seleccionadas
 #SPECIES ACUMULATION CURVES-------
 #Species accumulation curves (SAC) are used to compare diversity properties of community data sets using different accumulator functions. The classic method is "random" which finds the mean SAC and its standard deviation from random permutations of the data, or subsampling without replacement (Gotelli & Colwell 2001). The "exact" method finds the expected SAC using sample-based rarefaction method that has been independently developed numerous times (Chiarucci et al. 2008) and it is often known as Mao Tau estimate (Colwell et al. 2012). The unconditional standard deviation for the exact SAC represents a moment-based estimation that is not conditioned on the empirical data set (sd for all samples > 0). The unconditional standard deviation is based on an estimation of the extrapolated number of species in the survey area (a.k.a. gamma diversity), as estimated by function specpool. The conditional standard deviation that was developed by Jari Oksanen (not published, sd=0 for all samples). Method "coleman" finds the expected SAC and its standard deviation following Coleman et al. (1982). All these methods are based on sampling sites without replacement. In contrast, the method = "rarefaction" finds the expected species richness and its standard deviation by sampling individuals instead of sites. It achieves this by applying function rarefy with number of individuals corresponding to average number of individuals per site.
 
+table(PQ.PRESENCE_ABSENCE_T1_T2$site)
+
 library(vegan)
 pool <- poolaccum(PQ.PRESENCE_ABSENCE_T1_T2[,-(1:22)])
 plot(pool,display = "S")
@@ -559,9 +666,31 @@ PM.PP <- rbind(PP.pool,PM.pool)
 #reodenar para que coicidan colores con MDS
 PM.PP$Sites <- factor(PM.PP$Sites, levels = c("Bahia Piramides", "Bahia Nueva"))
 
-p <- ggplot(PM.PP, aes(x=N,color =Sites)) + geom_line(aes(y = S)) + geom_line(aes(y = Chao), linetype="twodash") + 
-  theme_bw() + theme(legend.position = "bottom",panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank()) + labs(fill = "Zona",x = "Número de fotocuadrantes",y = "Número de Taxa",title = "")
-p + guides(color = guide_legend(title = "Zona"))
+p <- ggplot(PM.PP, aes(x = N, color = Sites)) +
+  geom_line(aes(y = S), size = 1.5) +  # Aumentar el grosor de la línea
+  geom_line(aes(y = Chao), linetype = "twodash", size = 1.5) +  # Aumentar el grosor de la línea
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 20),
+    legend.text = element_text(size = 20),
+    legend.title = element_text(size = 20),
+    plot.title = element_text(size = 20)
+  ) +
+  labs(
+    fill = "Zona",
+    x = "Número de fotocuadrantes",
+    y = "Número de Taxa",
+    title = ""
+  ) +
+  guides(color = guide_legend(title = "Zona"))
+
+print(p)
+
 
 
 specpool(PM[,-(1:22)])

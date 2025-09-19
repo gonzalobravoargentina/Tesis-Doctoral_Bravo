@@ -101,7 +101,50 @@ ggsave(filename = "nMDSbydepth.pdf",plot =nMDSbydepthfig2,width=180,height =300,
 #If PERMANOVA is significant but PERMDISP IS NOT, then you can infer that there is only a location effect. If both tests are significant, then there is a dispersion effect for sure and there might also be (not always) a location effect.
 # Perform both tests (PERMANOVA and PERMDISP) will help to determine the nature of the difference between any pair of groups, whether it be due to location, spread, or a combination of the two.Function adonis studied the differences in the group means, but function betadisper studies the differences in group homogeneities.
 
-#MODEL- Effects of reef surface orientationson benthic communities -->Factor= Reef.area (Fixed), levels= Horizontal,Vertical, Overhang, cavefloor
+#MODEL- Effects of reef surface orientationson benthic communities -->Factor= Reef.area (Fixed), levels= Horizontal,Vertical, Overhang, cavefloor Factor=Depth (Fixed)
+
+
+#PERMANOVA two-ways------------
+Cover.data.bc <- vegdist(log(Cover.data[,-(1:20)]+1),method = "bray")
+PERMDISP<- betadisper(Cover.data.bc, paste(Cover.data$reef.area,Cover.data$Depth))
+PERMDISP
+anova(PERMDISP)
+permutest(PERMDISP, pairwise = TRUE, permutations = 999)
+(PERMDISP.HSD <- TukeyHSD(PERMDISP))
+
+PERMANOVA2way <- adonis2(log(Cover.data[,-(1:20)]+1)~Cover.data$reef.area*Cover.data$Depth,sim.method = "bray")
+
+reef.area<- Cover.data$reef.area
+Depth<- Cover.data$Depth
+pairwise.adonis(log(Cover.data[,-(1:20)]+1), paste(Depth,reef.area),sim.method ="bray")
+
+
+# Crear un factor de interacción
+interaction <- interaction(Cover.data$reef.area, Cover.data$Depth)
+
+# Realizar comparaciones a posteriori usando pairwise.adonis considerando interacciones
+pairwise_results <- pairwise.adonis(log(Cover.data[,-(1:20)]+1), factors = interaction)
+
+# Supongamos que pairwise_results es el resultado del análisis pairwise.adonis
+# Extraemos los valores p del resultado
+p_values <- pairwise_results$p.value
+
+# Corrección de Bonferroni
+p_values_bonferroni <- p.adjust(p_values, method = "bonferroni")
+
+# Corrección FDR (Benjamini-Hochberg)
+p_values_fdr <- p.adjust(p_values, method = "BH")
+
+# Agregar los valores p ajustados al resultado original
+pairwise_results$p_value_bonferroni <- p_values_bonferroni
+pairwise_results$p_value_fdr <- p_values_fdr
+
+# Ver los resultados con las correcciones
+print(pairwise_results)
+
+
+#PERMANOVA one-way-----
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 #Shallow
 Cover.data_shallow.bc <- vegdist(log(Cover.data_shallow[,-(1:20)]+1),method = "bray")
@@ -117,10 +160,7 @@ adonis(Cover.data_shallow[,-(1:20)]~Cover.data_shallow$reef.area,sim.method = "b
 
 #PARWISE PERMANOVA
 pairwise.adonis(log(Cover.data_shallow[,-(1:20)]+1),Cover.data_shallow$reef.area,sim.method ="bray")
-
-
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
 #Medium
 Cover.data_medium.bc <- vegdist(log(Cover.data_medium[,-(1:20)]+1),method = "bray")
 
@@ -135,8 +175,7 @@ adonis(Cover.data_medium[,-(1:20)]~Cover.data_medium$reef.area,sim.method = "bra
 
 #PAIRWISE PERMANOVA
 pairwise.adonis(log(Cover.data_medium[,-(1:20)]+1),Cover.data_medium$reef.area,sim.method ="bray")
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 #Deep
 Cover.data_deep.bc <- vegdist(log(Cover.data_deep[,-(1:20)]+1),method = "bray")
@@ -153,12 +192,37 @@ adonis(Cover.data_deep[,-(1:20)]~Cover.data_deep$reef.area,sim.method = "bray")
 #PAIRWISE PERMANOVA
 pairwise.adonis(log(Cover.data_deep[,-(1:20)]+1),Cover.data_deep$reef.area,sim.method ="bray")
 
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#PERMANOVA one-way DEPTH------
+pairwise.adonis(Cover.data[,-(1:20)], Depth,sim.method ="bray")
+Depth<- Presence.absence.data$Depth
+pairwise.adonis(Presence.absence.data[,-(1:20)],Depth,sim.method ="jaccard")
+
+#PERMANOVA one-way for Vertical and horizontal surfaces
+Cover.data.surfaceorientation <- subset(Cover.data,reef.area=="horizontal") #select surface orientation
+Cover.data.surfaceorientation.bc <- vegdist(log(Cover.data.surfaceorientation[,-(1:20)]+1),method = "bray")
+PERMDISP<- betadisper(Cover.data.surfaceorientation.bc, Cover.data.surfaceorientation$Depth)
+TukeyHSD(PERMDISP)
+
+pairwise.adonis(log(Cover.data.surfaceorientation[,-(1:20)]+1),Cover.data.surfaceorientation$Depth,sim.method ="bray")
+
+
+nMDS=metaMDS(log(Cover.data.surfaceorientation[,-(1:20)]+1),k=2,trymax=10,try = 10,distance ="bray",autotransform = FALSE)
+NMDS1 <-nMDS$points[,1] 
+NMDS2<- nMDS$points[,2]
+MDS.plot<-cbind(log(Cover.data.surfaceorientation[,-(1:20)]+1), NMDS1, NMDS2,Cover.data.surfaceorientation$Depth) 
+
+#nMDS plot 
+ggplot(MDS.plot, aes(NMDS1, NMDS2, color=Cover.data.surfaceorientation$Depth,shape=Cover.data.surfaceorientation$Depth))+geom_point(position=position_jitter(.1),size=2)+stat_ellipse(type='t',size =2) +theme_bw() + theme(legend.position = "top",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1)-0.5, y=min(NMDS2)-0.5, label=paste('Stress =',round(nMDS$stress,3)))
+
 
 #INDICATOR VALUE INDICES (inval)----------
 library(indicspecies)
-wetpt = multipatt(Cover.data[,-(1:20)], Cover.data$reef.area,control = how(nperm=999)) 
-summary(wetpt) 
-summary(wetpt,alpha=1) 
+wetpt = multipatt(Cover.data_deep[,-(1:20)], Cover.data_deep$reef.area,control = how(nperm=999)) 
+#wetpt = multipatt(Cover.data[,-(1:20)], Cover.data$reef.area,control = how(nperm=999)) 
+#summary(wetpt) 
+#summary(wetpt,alpha=1) 
 summary(wetpt,indvalcomp=TRUE)
 
 #covergae
@@ -192,47 +256,9 @@ phi <- multipatt(Presence.absence.data[,-(1:20)], Presence.absence.data$reef.are
 summary(phi)
 round(head(phi$str),3)
 
-#PERMANOVA two-ways------------
-Cover.data.bc <- vegdist(log(Cover.data[,-(1:20)]+1),method = "bray")
-PERMDISP<- betadisper(Cover.data.bc, paste(Cover.data$reef.area,Cover.data$Depth))
-PERMDISP
-anova(PERMDISP)
-permutest(PERMDISP, pairwise = TRUE, permutations = 999)
-(PERMDISP.HSD <- TukeyHSD(PERMDISP))
-
-adonis(log(Cover.data[,-(1:20)]+1)~Cover.data$reef.area*Cover.data$Depth,sim.method = "bray")
 
 
-reef.area<- Cover.data$reef.area
-Depth<- Cover.data$Depth
-pairwise.adonis(log(Cover.data[,-(1:20)]+1), paste(Depth,reef.area),sim.method ="bray")
 
-
-#PERMANOVA REEFS 
-pairwise.adonis(Cover.data[,-(1:20)], reef.name,sim.method ="bray")
-
-
-#PERMANOVA DEPTH------
-pairwise.adonis(Cover.data[,-(1:20)], Depth,sim.method ="bray")
-Depth<- Presence.absence.data$Depth
-pairwise.adonis(Presence.absence.data[,-(1:20)],Depth,sim.method ="jaccard")
-
-#PERMANOVA one-way for Vertical and horizontal surfaces
-Cover.data.surfaceorientation <- subset(Cover.data,reef.area=="overhang") #select surface orientation
-Cover.data.surfaceorientation.bc <- vegdist(log(Cover.data.surfaceorientation[,-(1:20)]+1),method = "bray")
-PERMDISP<- betadisper(Cover.data.surfaceorientation.bc, Cover.data.surfaceorientation$Depth)
-TukeyHSD(PERMDISP)
-
-pairwise.adonis(log(Cover.data.surfaceorientation[,-(1:20)]+1),Cover.data.surfaceorientation$Depth,sim.method ="bray")
-
-
-nMDS=metaMDS(log(Cover.data.surfaceorientation[,-(1:20)]+1),k=2,trymax=10,try = 10,distance ="bray",autotransform = FALSE)
-NMDS1 <-nMDS$points[,1] 
-NMDS2<- nMDS$points[,2]
-MDS.plot<-cbind(log(Cover.data.surfaceorientation[,-(1:20)]+1), NMDS1, NMDS2,Cover.data.surfaceorientation$Depth) 
-
-#nMDS plot 
-ggplot(MDS.plot, aes(NMDS1, NMDS2, color=Cover.data.surfaceorientation$Depth,shape=Cover.data.surfaceorientation$Depth))+geom_point(position=position_jitter(.1),size=2)+stat_ellipse(type='t',size =2) +theme_bw() + theme(legend.position = "none",axis.text.x = element_blank(),axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(),panel.background = element_blank(), panel.grid.major = element_blank(),panel.grid.minor = element_blank(),plot.background = element_blank()) + annotate("text", x=max(NMDS1)-0.5, y=min(NMDS2)-0.5, label=paste('Stress =',round(nMDS$stress,3)))
 
 
 #Richness Analysis-------------------------------------------
@@ -361,7 +387,7 @@ Observations_orientations$V <- as.numeric(rich.results[[2]]$sumcol)
 Observations_orientations$O <- as.numeric(rich.results[[3]]$sumcol)
 Observations_orientations$C <- as.numeric(rich.results[[4]]$sumcol)
 
-write.csv(x=Observations_orientations, file="Observations_orientation.csv")
+#write.csv(x=Observations_orientations, file="Observations_orientation.csv")
 
 
 
@@ -406,7 +432,7 @@ c2m(pop1=x$sumrow,pop2=y$sumrow,nrandom=999,verbose=FALSE)
 
 #FIGURE 4-----
 #Boxplot for spp richnnes by depth--------------
-richnessBYdepth <- ggplot(data=spp, mapping=aes(x=depth, y=sppnumber)) +geom_boxplot()  + scale_x_discrete(limits=c("shallow", "medium","deep"),labels=c("Somero", "Medio","Profundo")) + labs(title="",x="Profundidad", y = "Taxa por fotocuadrante") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),text = element_text(size=12)) + annotate("text", x=c(1,2,3), y=c(12.3,14.1,16), label="*",size=8)
+richnessBYdepth <- ggplot(data=spp, mapping=aes(x=depth, y=sppnumber)) +geom_boxplot()  + scale_x_discrete(limits=c("shallow", "medium","deep"),labels=c("Somero", "Medio","Profundo")) + labs(title="",x="Profundidad", y = "Taxa por fotocuadrante") +theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),text = element_text(size=12)) + annotate("text", x=c(1,2,3), y=c(12.3,14.1,16), label="",size=8)
 
 #save plot for half page 
 ggsave(here("Figures"),filename = "figure4.eps",plot = richnessBYdepth,width=85,height =85,units = "mm", device="eps")
@@ -420,7 +446,7 @@ ggsave(here("Figures"),filename = "figure4.jpeg",plot = richnessBYdepth,width=85
 
 #FIGURE 6-------------
 #Boxplot for spp richnnes by surfaceorientations-------------
-richnessBYorientation <- ggplot(data=spp, mapping=aes(x=reefarea, y=sppnumber)) +geom_boxplot()  + scale_x_discrete(limits=c("horizontal", "vertical","overhang","cavefloor"),labels=c("Horizontal", "Vertical","Techo Alero","Piso Alero")) + labs(title="",x="Inclinación del arrecife", y = "Taxa por fotocuadrantes")+theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),text = element_text(size=12)) + annotate("text", x=2, y=16, label="*",size=8)
+richnessBYorientation <- ggplot(data=spp, mapping=aes(x=reefarea, y=sppnumber)) +geom_boxplot()  + scale_x_discrete(limits=c("horizontal", "vertical","overhang","cavefloor"),labels=c("Horizontal", "Vertical","Techo Alero","Piso Alero")) + labs(title="",x="Inclinación del arrecife", y = "Taxa por fotocuadrantes")+theme_bw()+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),text = element_text(size=12)) + annotate("text", x=2, y=16, label="",size=8)
 
 #save plot for half page 
 ggsave(here("Figures"),filename = "figure6.eps",plot = richnessBYorientation,width=85,height =85,units = "mm", device="eps")
@@ -798,11 +824,31 @@ lapply(simper_deep , FUN= function(x){x$overall})
 top10_deep<-lapply(simsum_deep, `[`,1:10,)
 top20_deep<-lapply(simsum_deep, `[`,1:20,)
 
+
+#DENSITY------
+#
+library(dplyr)
+
+# Agrupar por reef.area y sumar las abundancias de las especies
+species_sums <- Density.data %>%
+  group_by(reef.area) %>%
+  summarise(across(20:42, sum, na.rm = TRUE))
+
+# Identificar la especie más frecuente en cada grupo
+most_frequent_species <- species_sums %>%
+  rowwise() %>%
+  mutate(most_frequent = names(.)[which.max(c_across(2:ncol(.)))])
+
+# Mostrar el resultado
+print(most_frequent_species)
+
 #Abundance sea urchins-------------------------------------------------------------
 
 #Pseudechinus.magellanicus
 library(doBy)
 densitybyPseudechinus.magellanicus <- summaryBy(Pseudechinus.magellanicus  ~ reef.area + Depth,   data =Density.data, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),max=max(x),n=length(x)) })
+
+densityarbacia <- summaryBy(Arbacia.dufresnii  ~ reef.area,   data =Density.data, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),max=max(x),n=length(x)) })
 
 #calculate density only for Horizontal surfaces
 Density.data.horizontal <- subset(Density.data, reef.area=="horizontal")
@@ -816,3 +862,39 @@ l <- list(Pseudechinus.horizontal,Arbacia.horizontal)
 library(ggplot2)
 listplotsdensity<- lapply(l, function (j) ggplot(j, aes(y=j[,2], x=Depth)) + geom_bar(stat="identity", color="black",position=position_dodge(),na.rm = TRUE) +geom_errorbar(aes(ymin=j[,2], ymax=j[,2]+j[,4]), width=.2,position=position_dodge(.9),na.rm = TRUE)+coord_flip()+ scale_fill_grey(start = 0.2, end = .9)+theme_bw()+ theme(plot.title = element_text(size = 10, face = "italic"))+labs(y= expression(paste("Density (ind. m"^"-2",")")),x=element_blank())+ ggtitle(names(j[2]))+scale_x_discrete(limits = position,labels=c("Deep(16-25 m)","Medium(8-15 m)","Shallow (1-7 m )")))
 
+#Abundance of nudibranch-------
+Density.data$Nudibranquios <- Density.data$Heterobranchia + 
+  Density.data$Pleurobranchaea.maculata + 
+  Density.data$Diaulula.punctuolata + 
+  Density.data$Trapania.sp. + 
+  Density.data$Polycera.marplatensis + 
+  Density.data$Doris.fontainii
+
+library(doBy)
+densitynudi_bysurface <- summaryBy(Nudibranquios  ~ reef.area,   data =Density.data, FUN = function(x) { c(mean = mean(x), SD=sd(x),SE = sqrt(var(x)/length(x)),max=max(x),n=length(x)) })
+
+library(stats)
+
+# Asegurarse de que las columnas están en el formato correcto
+Density.data$reef.area <- as.factor(Density.data$reef.area)
+
+# Ajustar un modelo lineal generalizado (GLM)
+# Suponiendo que los conteos de Nudibranquios siguen una distribución de Poisson (usualmente adecuado para conteos)
+glm_model <- glm(Nudibranquios ~ reef.area, data = Density.data, family = poisson)
+
+# Resumen del modelo
+summary(glm_model)
+
+# Verificar los resultados del GLM
+anova(glm_model, test = "Chisq")
+
+# Si hay diferencias significativas, hacer comparaciones post hoc
+if (anova(glm_model, test = "Chisq")$`Pr(>Chi)`[2] < 0.05) {
+  # Instalar y cargar el paquete necesario
+  if (!require("multcomp")) install.packages("multcomp")
+  library(multcomp)
+  
+  # Realizar comparaciones post hoc
+  posthoc <- glht(glm_model, linfct = mcp(reef.area = "Tukey"))
+  summary(posthoc)
+}

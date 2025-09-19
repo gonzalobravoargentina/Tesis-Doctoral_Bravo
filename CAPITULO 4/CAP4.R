@@ -47,6 +47,8 @@ PQ.COVER$site[PQ.COVER$site == "Islas Becases"] <- "Canal Beagle"
 PQ.COVER <- subset(PQ.COVER,`Annotation status`=="Unconfirmed")
 
 
+table(PQ.COVER$site)
+
 #Remove those categories that have realy low covers
 # Selecciona todas las columnas excepto las que deseas eliminar
 #PQ.COVER <- PQ.COVER[, !names(PQ.COVER) %in% c("BRY", "ASS", "WPOT", "SHAD", "EOBSS","ESS","ESUR","MAFG")]
@@ -210,17 +212,18 @@ NMDS2.vertical <- nMDSvertical$points[,2]
 MDS.plot_vertical<-cbind(vertical.data[,-(1:22)], NMDS1.vertical, NMDS2.vertical,vertical.data$site, vertical.data$region) 
 
 #nMDS plots----
+table(horizontal.data$`reef area`)
 #nMDS plot horizontal
-nMDShorizontal.plot <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$region, shape=horizontal.data$region)) +
-  geom_point(position=position_jitter(.1), alpha=0.8)  +stat_ellipse(type='t',size =1)+
+nMDShorizontal.plot <- ggplot(MDS.plot_horizontal, aes(NMDS1.horizontal, NMDS2.horizontal, color=horizontal.data$site, shape=horizontal.data$site)) +
+  geom_point(position=position_jitter(.1), alpha=0.8) +
   theme_bw() + 
-  theme(legend.position = "none", axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(),axis.title.x = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), plot.background = element_blank()) +scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7)) +
+  theme(legend.position = "top", axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(),axis.title.x = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), plot.background = element_blank()) +scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7,8,9,10)) +
   annotate("text", x = max(NMDS1.horizontal) - 0.5, y = min(NMDS2.horizontal) - 0.5, label = paste('Stress =', round(nMDShorizontal$stress, 3))) + ggtitle("Fotocuadrantes superficie horizontal") + 
   scale_color_brewer(palette = "Set2")
 
 
 #nMDS plot vertical
-nMDSvertical.plot <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$region, shape=vertical.data$region)) + geom_point(position=position_jitter(.1), alpha=0.8) + stat_ellipse(type='t',size =1) + theme_bw() +  theme(legend.position = "none", axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(),axis.title.x = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), plot.background = element_blank()) + scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7)) + annotate("text", x = max(NMDS1.vertical) - 0.5, y = min(NMDS2.vertical) - 0.5, label = paste('Stress =', round(nMDSvertical$stress, 3))) + ggtitle("Fotocuadrantes superficie vertical") + scale_color_brewer(palette = "Set2")
+nMDSvertical.plot <- ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color=vertical.data$site, shape=vertical.data$site)) + geom_point(position=position_jitter(.1), alpha=0.8)+ theme_bw() +  theme(legend.position = "none", axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(),axis.title.x = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), plot.background = element_blank()) + scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7,8,9,10)) + annotate("text", x = max(NMDS1.vertical) - 0.5, y = min(NMDS2.vertical) - 0.5, label = paste('Stress =', round(nMDSvertical$stress, 3))) + ggtitle("Fotocuadrantes superficie vertical") + scale_color_brewer(palette = "Set2")
 
 # Plot legend
 legend <-  ggplot(MDS.plot_vertical, aes(NMDS1.vertical, NMDS2.vertical, color = vertical.data$region, shape = vertical.data$region)) +mgeom_point(position = position_jitter(.1), alpha = 0.8) + stat_ellipse(type = 't', size = 1) + theme_bw() +  theme(legend.position = "bottom", axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), plot.background = element_blank()) + scale_color_brewer(palette = "Set2", name = "Region") + scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7), name = "Region") + annotate("text", x = max(NMDS1.vertical) - 0.5, y = min(NMDS2.vertical) - 0.5, label = paste('Stress =', round(nMDSvertical$stress, 3))) + ggtitle("Fotocuadrantes superficie vertical") +guides(color = guide_legend(override.aes = list(alpha = 0.3)))
@@ -307,6 +310,9 @@ fig2 <- plot_grid(nMDSbysites, legend_plot, ncol = 1, rel_heights = c(1,.09))
 #df_muestras_seleccionadas es un dataframe con 37 fotocuandrantes por arrecife y tiempo de muestreo
 
 #HORIZONTAL
+
+#Horizontal data
+horizontal.data <- subset(PQ.COVER,`reef area`=="horizontal")
 #balanceado
 Cover.data_horizontal.bc <- vegdist(log(horizontal.data[,-(1:21)]+1),method = "bray")
 
@@ -326,7 +332,9 @@ library(pairwiseAdonis)
 pairwise.adonis(horizontal.data[,-(1:21)],horizontal.data$site,sim.method ="bray")
 pairwise.adonis(Cover.data_horizontal.bc,factors=horizontal.data$region,p.adjust.m='holm')
 
-#vertical
+#VERTICAL
+#vertical data
+vertical.data <- subset(PQ.COVER,`reef area`=="vertical")
 #balanceado
 Cover.data_vertical.bc <- vegdist(log(vertical.data[,-(1:21)]+1),method = "bray")
 
